@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
   // Configure Next.js to use the src directory
   distDir: ".next",
   experimental: {},
+  output: "export",
 };
 
 export default nextConfig;
