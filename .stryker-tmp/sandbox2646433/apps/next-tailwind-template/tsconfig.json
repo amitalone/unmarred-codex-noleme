@@ -6,17 +6,11 @@
         "name": "next"
       }
     ],
-    "types": ["jest", "@testing-library/jest-dom"],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "types": ["jest", "@testing-library/jest-dom"]
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "tests/**/*.ts",
-    "tests/**/*.tsx",
+    "**/*.ts",
+    "**/*.tsx",
     "next-env.d.ts",
     "next.config.ts",
     ".next/types/**/*.ts"

@@ -7,9 +7,6 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Configure Next.js to use the src directory
-  distDir: ".next",
-  experimental: {},
 };
 
 export default nextConfig;

@@ -2,4 +2,4 @@
 @import "tailwindcss";
 
 /* Import component-specific CSS files */
-@import "./card/card.css";
+@import "./card.css";

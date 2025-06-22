@@ -8,7 +8,7 @@ const config = {
     // Handle CSS imports
     "\\.css$": "identity-obj-proxy",
     // Handle module aliases
-    "^@/(.*)$": "<rootDir>/src/$1",
+    "^@/(.*)$": "<rootDir>/$1",
   },
   transform: {
     "^.+\\.(ts|tsx|js|jsx)$": [
@@ -23,11 +23,11 @@ const config = {
     ],
   },
   setupFilesAfterEnv: ["@repo/jest-config/jest.setup.js"],
-  testMatch: ["<rootDir>/tests/**/*.test.(ts|tsx)"],
+  testMatch: ["<rootDir>/**/*.test.(ts|tsx)"],
   collectCoverageFrom: [
-    "src/**/*.{ts,tsx}",
-    "!src/**/*.d.ts",
-    "!src/app/layout.tsx",
+    "app/**/*.{ts,tsx}",
+    "!app/**/*.d.ts",
+    "!app/layout.tsx",
   ],
   // Next.js specific settings
   moduleDirectories: ["node_modules", "<rootDir>/"],
