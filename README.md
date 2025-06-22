@@ -56,3 +56,24 @@ This Turborepo has some additional tools already setup for you:
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
+- [Jest](https://jestjs.io/) for testing with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+
+### Testing
+
+This Turborepo includes Jest for testing React components and applications:
+
+- Shared Jest configuration in the `@repo/jest-config` package
+- Test setup for the UI components package
+- Test setup for the Next.js application
+
+Run tests using:
+
+```sh
+# Run all tests in the monorepo
+pnpm test
+
+# Run tests in watch mode
+pnpm test:watch
+```
+
+For more details on the testing setup, see [JEST-TESTING.md](./JEST-TESTING.md).
