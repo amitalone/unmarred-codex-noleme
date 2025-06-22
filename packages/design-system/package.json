@@ -1,5 +1,5 @@
 {
-  "name": "@repo/ui",
+  "name": "@repo/design-system",
   "version": "0.0.0",
   "sideEffects": [
     "**/*.css"
@@ -30,7 +30,6 @@
     "react-dom": "^19"
   },
   "devDependencies": {
-    "@repo/design-system": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/jest-config": "workspace:*",
     "@repo/stryker-config": "workspace:*",

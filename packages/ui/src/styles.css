@@ -1,5 +1,8 @@
 /* Component-level styles for the UI package */
 @import "tailwindcss";
 
+/* Import design-system styles */
+@import "@repo/design-system/styles.css";
+
 /* Import component-specific CSS files */
 @import "./card/card.css";

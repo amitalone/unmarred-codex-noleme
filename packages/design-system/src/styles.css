@@ -1,0 +1,5 @@
+/* Component-level styles for the design-system package */
+@import "tailwindcss";
+
+/* Import component-specific CSS files */
+@import "./button/button.css";
