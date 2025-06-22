@@ -1,7 +1,0 @@
-20:20:59 (9152) INFO ConfigReader No config file specified. Running with command line arguments.
-20:20:59 (9152) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text"]
-20:20:59 (9152) INFO ConfigReader Use `stryker init` command to generate your config file.
-20:20:59 (9152) DEBUG PluginLoader Loading stryker-* from C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules
-20:20:59 (9152) DEBUG PluginLoader Expression stryker-* not resulted in plugins to load
-20:20:59 (9152) DEBUG PluginLoader Loading plugins C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules\stryker\src\reporters\index.js
-20:20:59 (9152) DEBUG PluginLoader Loading plugins C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules\stryker\src\mutators\index.js
