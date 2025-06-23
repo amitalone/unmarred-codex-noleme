@@ -1,0 +1,761 @@
+20:10:18 (5676) DEBUG ConfigReader Loading config from stryker.config.js
+20:10:18 (5676) DEBUG ConfigReader Loaded config: {
+  "packageManager": "pnpm",
+  "testRunner": "jest",
+  "coverageAnalysis": "perTest",
+  "plugins": [
+    "@stryker-mutator/jest-runner"
+  ],
+  "jest": {
+    "enableFindRelatedTests": true
+  },
+  "mutate": [
+    "src/**/*.tsx",
+    "src/**/*.ts",
+    "!src/**/*.test.tsx",
+    "!src/**/*.test.ts"
+  ],
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": 50
+  },
+  "timeoutMS": 60000,
+  "concurrency": 4,
+  "reporters": [
+    "html",
+    "clear-text",
+    "progress"
+  ],
+  "htmlReporter": {
+    "fileName": "reports/mutation/html/index.html"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "allowConsoleColors": true,
+  "checkers": [],
+  "checkerNodeArgs": [],
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "allowEmojis": false,
+    "logTests": true,
+    "maxTestsToLog": 3,
+    "reportTests": true,
+    "reportMutants": true,
+    "reportScoreTable": true,
+    "skipFull": false
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "dryRunOnly": false,
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "ignorePatterns": [],
+  "ignoreStatic": false,
+  "incremental": false,
+  "incrementalFile": "reports/stryker-incremental.json",
+  "force": false,
+  "inPlace": false,
+  "maxConcurrentTestRunners": 9007199254740991,
+  "maxTestRunnerReuse": 0,
+  "mutator": {
+    "plugins": null,
+    "excludedMutations": []
+  },
+  "appendPlugins": [],
+  "jsonReporter": {
+    "fileName": "reports/mutation/mutation.json"
+  },
+  "disableTypeChecks": true,
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "cleanTempDir": true,
+  "testRunnerNodeArgs": [],
+  "timeoutFactor": 1.5,
+  "dryRunTimeoutMinutes": 5,
+  "tsconfigFile": "tsconfig.json",
+  "warnings": true,
+  "disableBail": false,
+  "allowEmpty": false,
+  "ignorers": []
+}
+20:10:18 (5676) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+20:10:18 (5676) DEBUG PluginLoader Loading plugin file:///C:/workspace/unmarred-codex-noleme/node_modules/.pnpm/@stryker-mutator+instrumenter@8.7.1/node_modules/@stryker-mutator/instrumenter/dist/src/frameworks/index.js
+20:10:18 (5676) DEBUG PluginLoader Loading plugin file:///C:/workspace/unmarred-codex-noleme/node_modules/.pnpm/@stryker-mutator+core@8.7.1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+20:10:18 (5676) DEBUG MetaSchemaBuilder Contributing 1 schemas from plugins to options validation.
+20:10:18 (5676) WARN ProjectReader Glob pattern "src/**/*.ts" did not result in any files.
+20:10:18 (5676) WARN ProjectReader Glob pattern "!src/**/*.test.ts" did not exclude any files.
+20:10:18 (5676) INFO ProjectReader Found 3 of 33 file(s) to be mutated.
+20:10:18 (5676) DEBUG ProjectReader All input files: [
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.turbo\\turbo-build$colon$components.log",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.turbo\\turbo-build$colon$styles.log",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.turbo\\turbo-build.log",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.turbo\\turbo-mutation.log",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.turbo\\turbo-test.log",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.d.ts",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.d.ts.map",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.module.css",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.test.d.ts",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.test.d.ts.map",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.test.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\gradient.d.ts",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\gradient.d.ts.map",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\gradient.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\index.css",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\turborepo-logo.d.ts",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\turborepo-logo.d.ts.map",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\turborepo-logo.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\eslint.config.mjs",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\jest.config.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\package.json",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\README.md",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.css",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.test.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\gradient.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\styles.css",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\turborepo-logo.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\stryker.config.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tailwind.config.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tsconfig.json",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\turbo.json"
+]
+20:10:18 (5676) DEBUG ProjectReader Files to mutate: [
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\gradient.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\turborepo-logo.tsx"
+]
+20:10:18 (5676) DEBUG TemporaryDirectory Using temp directory "c:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox-94etN7"
+20:10:18 (5676) DEBUG Instrumenter Instrumenting 3 source files with mutants
+20:10:18 (5676) DEBUG Instrumenter Instrumented src\card.tsx (1 mutant(s))
+20:10:18 (5676) DEBUG Instrumenter Instrumented src\gradient.tsx (8 mutant(s))
+20:10:18 (5676) DEBUG Instrumenter Instrumented src\turborepo-logo.tsx (1 mutant(s))
+20:10:18 (5676) INFO Instrumenter Instrumented 3 source file(s) with 10 mutant(s)
+20:10:18 (5676) DEBUG TSConfigPreprocessor Rewriting file ProjectFile {
+  fs: [FileSystem],
+  name: 'c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tsconfig.json',
+  mutate: false
+}
+20:10:19 (5676) INFO ConcurrencyTokenProvider Creating 4 test runner process(es).
+20:10:20 (5676) DEBUG ChildProcessProxy Started CheckerWorker in worker process 0 with pid 8484 
+20:10:21 (8484) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+20:10:21 (8484) DEBUG PluginLoader Loading plugin file:///C:/workspace/unmarred-codex-noleme/node_modules/.pnpm/@stryker-mutator+instrumenter@8.7.1/node_modules/@stryker-mutator/instrumenter/dist/src/frameworks/index.js
+20:10:21 (8484) DEBUG PluginLoader Loading plugin file:///C:/workspace/unmarred-codex-noleme/node_modules/.pnpm/@stryker-mutator+core@8.7.1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+20:10:21 (5676) DEBUG Sandbox Creating a sandbox for files in c:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox-94etN7
+20:10:21 (5676) DEBUG Sandbox Start symlink node_modules
+20:10:21 (5676) DEBUG Sandbox Create symlink from c:\workspace\unmarred-codex-noleme\packages\ui\node_modules to c:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox-94etN7\node_modules
+20:10:21 (5676) INFO BroadcastReporter Detected that current console does not support the "progress" reporter, downgrading to "progress-append-only" reporter
+20:10:21 (5676) DEBUG BroadcastReporter Broadcasting to reporters ["html","clear-text","progress-append-only"]
+20:10:21 (5676) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 0 with pid 7376 
+20:10:21 (5676) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 1 with pid 12332 
+20:10:23 (12332) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+20:10:23 (12332) DEBUG PluginLoader Loading plugin file:///C:/workspace/unmarred-codex-noleme/node_modules/.pnpm/@stryker-mutator+instrumenter@8.7.1/node_modules/@stryker-mutator/instrumenter/dist/src/frameworks/index.js
+20:10:23 (12332) DEBUG PluginLoader Loading plugin file:///C:/workspace/unmarred-codex-noleme/node_modules/.pnpm/@stryker-mutator+core@8.7.1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+20:10:23 (7376) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+20:10:23 (7376) DEBUG PluginLoader Loading plugin file:///C:/workspace/unmarred-codex-noleme/node_modules/.pnpm/@stryker-mutator+instrumenter@8.7.1/node_modules/@stryker-mutator/instrumenter/dist/src/frameworks/index.js
+20:10:23 (7376) DEBUG PluginLoader Loading plugin file:///C:/workspace/unmarred-codex-noleme/node_modules/.pnpm/@stryker-mutator+core@8.7.1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+20:10:24 (12332) DEBUG ChildProcessProxyWorker Changing current working directory for this process to c:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox-94etN7
+20:10:24 (7376) DEBUG ChildProcessProxyWorker Changing current working directory for this process to c:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox-94etN7
+20:10:24 (12332) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+20:10:24 (7376) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+20:10:24 (12332) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+20:10:24 (12332) DEBUG CustomJestConfigLoader Read config from "jest.config.js" (used native `readInitialOptions` from jest-config).
+20:10:24 (12332) DEBUG JestTestRunner Merging file-based config {
+  "preset": "@repo/jest-config",
+  "testEnvironment": "jsdom",
+  "moduleNameMapper": {
+    "\\.css$": "identity-obj-proxy"
+  },
+  "transform": {
+    "^.+\\.(ts|tsx)$": [
+      "ts-jest",
+      {
+        "tsconfig": "./tsconfig.json"
+      }
+    ]
+  },
+  "setupFilesAfterEnv": [
+    "@repo/jest-config/jest.setup.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/*.test.{ts,tsx}"
+  ],
+  "collectCoverageFrom": [
+    "src/**/*.{ts,tsx}",
+    "!src/**/*.d.ts"
+  ],
+  "rootDir": "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.stryker-tmp\\sandbox-94etN7"
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+20:10:24 (5676) INFO DryRunExecutor Starting initial test run (jest test runner with "perTest" coverage analysis). This may take a while.
+20:10:24 (5676) DEBUG DryRunExecutor Using timeout of 300000 ms.
+20:10:24 (5676) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+20:10:24 (5676) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 2 with pid 18472 
+20:10:24 (12332) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.stryker-tmp\\sandbox-94etN7\\src\\card.tsx","c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.stryker-tmp\\sandbox-94etN7\\src\\gradient.tsx","c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.stryker-tmp\\sandbox-94etN7\\src\\turborepo-logo.tsx"],"jestConfig":{"preset":"@repo/jest-config","testEnvironment":"C:\\workspace\\unmarred-codex-noleme\\node_modules\\.pnpm\\@stryker-mutator+jest-runner@8.7.1_@stryker-mutator+core@8.7.1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs","moduleNameMapper":{"\\.css$":"identity-obj-proxy"},"transform":{"^.+\\.(ts|tsx)$":["ts-jest",{"tsconfig":"./tsconfig.json"}]},"setupFilesAfterEnv":["@repo/jest-config/jest.setup.js"],"testMatch":["<rootDir>/src/**/*.test.{ts,tsx}"],"collectCoverageFrom":["src/**/*.{ts,tsx}","!src/**/*.d.ts"],"rootDir":"c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.stryker-tmp\\sandbox-94etN7","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"}},"testLocationInResults":true}
+20:10:24 (7376) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+20:10:24 (7376) DEBUG CustomJestConfigLoader Read config from "jest.config.js" (used native `readInitialOptions` from jest-config).
+20:10:24 (7376) DEBUG JestTestRunner Merging file-based config {
+  "preset": "@repo/jest-config",
+  "testEnvironment": "jsdom",
+  "moduleNameMapper": {
+    "\\.css$": "identity-obj-proxy"
+  },
+  "transform": {
+    "^.+\\.(ts|tsx)$": [
+      "ts-jest",
+      {
+        "tsconfig": "./tsconfig.json"
+      }
+    ]
+  },
+  "setupFilesAfterEnv": [
+    "@repo/jest-config/jest.setup.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/*.test.{ts,tsx}"
+  ],
+  "collectCoverageFrom": [
+    "src/**/*.{ts,tsx}",
+    "!src/**/*.d.ts"
+  ],
+  "rootDir": "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.stryker-tmp\\sandbox-94etN7"
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+20:10:24 (5676) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 3 with pid 16500 
+20:10:24 (5676) TRACE ChildProcessProxy ● Validation Warning:
+
+  Unknown option "collectCoverage" with value false was found.
+  This is probably a typing mistake. Fixing it will remove this message.
+
+  Configuration Documentation:
+  https://jestjs.io/docs/configuration
+
+
+20:10:24 (5676) TRACE ChildProcessProxy ● Validation Warning:
+
+  Unknown option "verbose" with value false was found.
+  This is probably a typing mistake. Fixing it will remove this message.
+
+  Configuration Documentation:
+  https://jestjs.io/docs/configuration
+
+● Validation Warning:
+
+  Unknown option "notify" with value false was found.
+  This is probably a typing mistake. Fixing it will remove this message.
+
+  Configuration Documentation:
+  https://jestjs.io/docs/configuration
+
+
+20:10:24 (5676) TRACE ChildProcessProxy ● Validation Warning:
+
+  Unknown option "bail" with value false was found.
+  This is probably a typing mistake. Fixing it will remove this message.
+
+  Configuration Documentation:
+  https://jestjs.io/docs/configuration
+
+
+20:10:24 (5676) TRACE ChildProcessProxy ● Validation Warning:
+
+  Unknown option "reporters" with value [] was found.
+  This is probably a typing mistake. Fixing it will remove this message.
+
+  Configuration Documentation:
+  https://jestjs.io/docs/configuration
+
+
+20:10:26 (18472) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+20:10:26 (18472) DEBUG PluginLoader Loading plugin file:///C:/workspace/unmarred-codex-noleme/node_modules/.pnpm/@stryker-mutator+instrumenter@8.7.1/node_modules/@stryker-mutator/instrumenter/dist/src/frameworks/index.js
+20:10:26 (18472) DEBUG PluginLoader Loading plugin file:///C:/workspace/unmarred-codex-noleme/node_modules/.pnpm/@stryker-mutator+core@8.7.1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+20:10:26 (16500) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+20:10:26 (16500) DEBUG PluginLoader Loading plugin file:///C:/workspace/unmarred-codex-noleme/node_modules/.pnpm/@stryker-mutator+instrumenter@8.7.1/node_modules/@stryker-mutator/instrumenter/dist/src/frameworks/index.js
+20:10:26 (16500) DEBUG PluginLoader Loading plugin file:///C:/workspace/unmarred-codex-noleme/node_modules/.pnpm/@stryker-mutator+core@8.7.1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+20:10:27 (5676) TRACE ChildProcessProxy No tests found, exiting with code 0
+
+20:10:27 (18472) DEBUG ChildProcessProxyWorker Changing current working directory for this process to c:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox-94etN7
+20:10:27 (5676) INFO DryRunExecutor No tests were found
+20:10:27 (5676) DEBUG Stryker Not removing the temp dir because an error occurred
+20:10:27 (5676) ERROR Stryker No tests were executed. Stryker will exit prematurely. Please check your configuration.
+20:10:27 (5676) DEBUG ChildProcessProxy Disposing of worker process 7376
+20:10:27 (5676) DEBUG ChildProcessProxy Disposing of worker process 12332
+20:10:27 (5676) DEBUG ChildProcessProxy Kill 7376
+20:10:27 (5676) DEBUG ChildProcessProxy Kill 12332
+20:10:27 (16500) DEBUG ChildProcessProxyWorker Changing current working directory for this process to c:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox-94etN7
+20:10:27 (18472) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+20:10:27 (16500) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+20:10:27 (18472) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+20:10:27 (18472) DEBUG CustomJestConfigLoader Read config from "jest.config.js" (used native `readInitialOptions` from jest-config).
+20:10:27 (18472) DEBUG JestTestRunner Merging file-based config {
+  "preset": "@repo/jest-config",
+  "testEnvironment": "jsdom",
+  "moduleNameMapper": {
+    "\\.css$": "identity-obj-proxy"
+  },
+  "transform": {
+    "^.+\\.(ts|tsx)$": [
+      "ts-jest",
+      {
+        "tsconfig": "./tsconfig.json"
+      }
+    ]
+  },
+  "setupFilesAfterEnv": [
+    "@repo/jest-config/jest.setup.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/*.test.{ts,tsx}"
+  ],
+  "collectCoverageFrom": [
+    "src/**/*.{ts,tsx}",
+    "!src/**/*.d.ts"
+  ],
+  "rootDir": "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.stryker-tmp\\sandbox-94etN7"
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+20:10:27 (5676) DEBUG ChildProcessProxy Disposing of worker process 18472
+20:10:27 (16500) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+20:10:27 (5676) DEBUG ChildProcessProxy Kill 18472
+20:10:27 (16500) DEBUG CustomJestConfigLoader Read config from "jest.config.js" (used native `readInitialOptions` from jest-config).
+20:10:27 (16500) DEBUG JestTestRunner Merging file-based config {
+  "preset": "@repo/jest-config",
+  "testEnvironment": "jsdom",
+  "moduleNameMapper": {
+    "\\.css$": "identity-obj-proxy"
+  },
+  "transform": {
+    "^.+\\.(ts|tsx)$": [
+      "ts-jest",
+      {
+        "tsconfig": "./tsconfig.json"
+      }
+    ]
+  },
+  "setupFilesAfterEnv": [
+    "@repo/jest-config/jest.setup.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/*.test.{ts,tsx}"
+  ],
+  "collectCoverageFrom": [
+    "src/**/*.{ts,tsx}",
+    "!src/**/*.d.ts"
+  ],
+  "rootDir": "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.stryker-tmp\\sandbox-94etN7"
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+20:10:27 (5676) DEBUG ChildProcessProxy Disposing of worker process 16500
+20:10:27 (5676) DEBUG ChildProcessProxy Kill 16500
+20:10:28 (5676) DEBUG ChildProcessProxy Disposing of worker process 8484
+20:10:28 (5676) DEBUG ChildProcessProxy Kill 8484
+20:16:06 (8864) INFO ConfigReader No config file specified. Running with command line arguments.
+20:16:06 (8864) INFO BroadcastReporter Detected that current console does not support the "progress" reporter, downgrading to "progress-append-only" reporter
+20:16:06 (8864) INFO ConfigReader Use `stryker init` command to generate your config file.
+20:16:06 (8864) DEBUG BroadcastReporter Broadcasting to reporters ["progress-append-only","clear-text"]
+20:16:06 (8864) DEBUG PluginLoader Loading stryker-* from C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules
+20:16:06 (8864) DEBUG PluginLoader Expression stryker-* not resulted in plugins to load
+20:16:06 (8864) DEBUG PluginLoader Loading plugins C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules\stryker\src\reporters\index.js
+20:16:06 (8864) DEBUG PluginLoader Loading plugins C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules\stryker\src\mutators\index.js
+20:16:06 (8864) WARN InputFileResolver No files marked to be mutated, Stryker will perform a dry-run without actually mutating anything. You can configure the `mutate` property in your stryker.conf.js file (or use `--mutate` via command line).
+20:16:06 (8864) DEBUG InputFileResolver All input files: [
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\stryker.config.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\stryker.log",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\README.md",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\eslint.config.mjs",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\jest.config.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\package.json",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.css",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.test.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\gradient.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\styles.css",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\turborepo-logo.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tailwind.config.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tsconfig.json",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\turbo.json"
+]
+20:16:06 (8864) DEBUG InputFileResolver Files to mutate: []
+20:16:06 (8864) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+20:16:06 (8864) INFO InitialTestExecutor Starting initial test run. This may take a while.
+20:16:06 (8864) DEBUG Sandbox Creating a sandbox for files in c:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox4565869
+20:16:06 (8864) DEBUG Sandbox Creating test runner 0
+20:16:06 (8864) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+20:16:09 (8864) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		
+> @repo/ui@0.0.0 test
+> jest --runInBand --detectOpenHandles --forceExit
+
+
+No tests found, exiting with code 1
+Run with `--passWithNoTests` to exit with code 0
+In C:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox4565869
+  10 files checked.
+  testMatch: C:/workspace/unmarred-codex-noleme/packages/ui\.stryker-tmp/sandbox4565869/src/**/*.test.{ts,tsx} - 0 matches
+  testPathIgnorePatterns: C:\\workspace\\unmarred-codex-noleme\\packages\\ui\.stryker-tmp\\sandbox4565869\\node_modules\\, C:\\workspace\\unmarred-codex-noleme\\packages\\ui\.stryker-tmp\\sandbox4565869\\dist\\ - 10 matches
+  testRegex:  - 0 matches
+Pattern:  - 0 matches
+
+20:19:06 (11236) DEBUG ConfigReader Loading config from stryker.config.js
+20:19:06 (11236) DEBUG ConfigReader Loaded config: {
+  "packageManager": "pnpm",
+  "testRunner": "jest",
+  "coverageAnalysis": "perTest",
+  "plugins": [
+    "@stryker-mutator/jest-runner"
+  ],
+  "jest": {
+    "projectType": "custom",
+    "configFile": "./jest.config.js",
+    "enableFindRelatedTests": false
+  },
+  "mutate": [
+    "src/**/*.tsx",
+    "!src/**/*.test.tsx"
+  ],
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": 50
+  },
+  "timeoutMS": 60000,
+  "concurrency": 4,
+  "reporters": [
+    "html",
+    "clear-text",
+    "progress"
+  ],
+  "htmlReporter": {
+    "fileName": "reports/mutation/html/index.html"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "allowConsoleColors": true,
+  "checkers": [],
+  "checkerNodeArgs": [],
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "allowEmojis": false,
+    "logTests": true,
+    "maxTestsToLog": 3,
+    "reportTests": true,
+    "reportMutants": true,
+    "reportScoreTable": true,
+    "skipFull": false
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "dryRunOnly": false,
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "ignorePatterns": [],
+  "ignoreStatic": false,
+  "incremental": false,
+  "incrementalFile": "reports/stryker-incremental.json",
+  "force": false,
+  "inPlace": false,
+  "maxConcurrentTestRunners": 9007199254740991,
+  "maxTestRunnerReuse": 0,
+  "mutator": {
+    "plugins": null,
+    "excludedMutations": []
+  },
+  "appendPlugins": [],
+  "jsonReporter": {
+    "fileName": "reports/mutation/mutation.json"
+  },
+  "disableTypeChecks": true,
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "cleanTempDir": true,
+  "testRunnerNodeArgs": [],
+  "timeoutFactor": 1.5,
+  "dryRunTimeoutMinutes": 5,
+  "tsconfigFile": "tsconfig.json",
+  "warnings": true,
+  "disableBail": false,
+  "allowEmpty": false,
+  "ignorers": []
+}
+20:19:06 (11236) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+20:19:06 (11236) DEBUG PluginLoader Loading plugin file:///C:/Users/amita/AppData/Local/pnpm-cache/dlx/742f4f31bc7f78c533d93bfcbe8ba5ede6d35ca4a1a7ece11937727166684fa0/197981cf89a-5950/node_modules/.pnpm/@stryker-mutator+instrumenter@9.0.1/node_modules/@stryker-mutator/instrumenter/dist/src/frameworks/index.js
+20:19:06 (11236) DEBUG PluginLoader Loading plugin file:///C:/Users/amita/AppData/Local/pnpm-cache/dlx/742f4f31bc7f78c533d93bfcbe8ba5ede6d35ca4a1a7ece11937727166684fa0/197981cf89a-5950/node_modules/.pnpm/@stryker-mutator+core@9.0.1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+20:19:06 (11236) WARN PluginLoader Cannot find plugin "@stryker-mutator/jest-runner".
+  Did you forget to install it ?
+20:19:06 (11236) DEBUG MetaSchemaBuilder Contributing 0 schemas from plugins to options validation.
+20:19:06 (11236) WARN OptionsValidator Unknown stryker config option "jest".
+20:19:06 (11236) WARN OptionsValidator Possible causes:
+     * Is it a typo on your end?
+     * Did you only write this property as a comment? If so, please postfix it with "_comment".
+     * You might be missing a plugin that is supposed to use it. Stryker loaded plugins from: ["@stryker-mutator/jest-runner"]
+     * The plugin that is using it did not contribute explicit validation. 
+     (disable "warnings.unknownOptions" to ignore this warning)
+20:19:06 (11236) INFO ProjectReader Found 3 of 33 file(s) to be mutated.
+20:19:06 (11236) DEBUG ProjectReader All input files: [
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.turbo\\turbo-build$colon$components.log",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.turbo\\turbo-build$colon$styles.log",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.turbo\\turbo-build.log",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.turbo\\turbo-mutation.log",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\.turbo\\turbo-test.log",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.d.ts",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.d.ts.map",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.module.css",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.test.d.ts",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.test.d.ts.map",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\card.test.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\gradient.d.ts",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\gradient.d.ts.map",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\gradient.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\index.css",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\turborepo-logo.d.ts",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\turborepo-logo.d.ts.map",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\dist\\turborepo-logo.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\eslint.config.mjs",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\jest.config.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\package.json",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\README.md",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.css",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.test.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\gradient.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\styles.css",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\turborepo-logo.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\stryker.config.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tailwind.config.js",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tsconfig.json",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\turbo.json"
+]
+20:19:06 (11236) DEBUG ProjectReader Files to mutate: [
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\gradient.tsx",
+  "c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\turborepo-logo.tsx"
+]
+20:19:06 (11236) DEBUG TemporaryDirectory Using temp directory "c:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox-gbCFZT"
+20:19:06 (11236) DEBUG Instrumenter Instrumenting 3 source files with mutants
+20:19:06 (11236) DEBUG Instrumenter Instrumented src\card.tsx (1 mutant(s))
+20:19:06 (11236) DEBUG Instrumenter Instrumented src\gradient.tsx (8 mutant(s))
+20:19:06 (11236) DEBUG Instrumenter Instrumented src\turborepo-logo.tsx (1 mutant(s))
+20:19:06 (11236) INFO Instrumenter Instrumented 3 source file(s) with 10 mutant(s)
+20:19:06 (11236) DEBUG TSConfigPreprocessor Rewriting file ProjectFile {
+  fs: [FileSystem],
+  name: 'c:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tsconfig.json',
+  mutate: false
+}
+20:19:06 (11236) DEBUG Stryker Not removing the temp dir because an error occurred
+20:19:06 (11236) ERROR Stryker Unexpected error occurred while running Stryker Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'typescript' imported from C:\Users\amita\AppData\Local\pnpm-cache\dlx\742f4f31bc7f78c533d93bfcbe8ba5ede6d35ca4a1a7ece11937727166684fa0\197981cf89a-5950\node_modules\.pnpm\@stryker-mutator+core@9.0.1\node_modules\@stryker-mutator\core\dist\src\sandbox\ts-config-preprocessor.js
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:255:9)
+    at packageResolve (node:internal/modules/esm/resolve:767:81)
+    at moduleResolve (node:internal/modules/esm/resolve:853:18)
+    at defaultResolve (node:internal/modules/esm/resolve:983:11)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:799:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:723:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:706:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:307:38)
+    at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:657:36)
+    at TracingChannel.tracePromise (node:diagnostics_channel:344:14)
+    at ModuleLoader.import (node:internal/modules/esm/loader:656:21)
+    at defaultImportModuleDynamicallyForModule (node:internal/modules/esm/utils:223:31)
+    at importModuleDynamicallyCallback (node:internal/modules/esm/utils:265:12)
+    at TSConfigPreprocessor.rewriteTSConfigFile (file:///C:/Users/amita/AppData/Local/pnpm-cache/dlx/742f4f31bc7f78c533d93bfcbe8ba5ede6d35ca4a1a7ece11937727166684fa0/197981cf89a-5950/node_modules/.pnpm/@stryker-mutator+core@9.0.1/node_modules/@stryker-mutator/core/dist/src/sandbox/ts-config-preprocessor.js:45:41)
+    at TSConfigPreprocessor.preprocess (file:///C:/Users/amita/AppData/Local/pnpm-cache/dlx/742f4f31bc7f78c533d93bfcbe8ba5ede6d35ca4a1a7ece11937727166684fa0/197981cf89a-5950/node_modules/.pnpm/@stryker-mutator+core@9.0.1/node_modules/@stryker-mutator/core/dist/src/sandbox/ts-config-preprocessor.js:36:24)
+    at MultiPreprocessor.preprocess (file:///C:/Users/amita/AppData/Local/pnpm-cache/dlx/742f4f31bc7f78c533d93bfcbe8ba5ede6d35ca4a1a7ece11937727166684fa0/197981cf89a-5950/node_modules/.pnpm/@stryker-mutator+core@9.0.1/node_modules/@stryker-mutator/core/dist/src/sandbox/multi-preprocessor.js:8:32)
+    at async MutantInstrumenterExecutor.execute (file:///C:/Users/amita/AppData/Local/pnpm-cache/dlx/742f4f31bc7f78c533d93bfcbe8ba5ede6d35ca4a1a7ece11937727166684fa0/197981cf89a-5950/node_modules/.pnpm/@stryker-mutator+core@9.0.1/node_modules/@stryker-mutator/core/dist/src/process/2-mutant-instrumenter-executor.js:30:9)
+    at async Stryker.runMutationTest (file:///C:/Users/amita/AppData/Local/pnpm-cache/dlx/742f4f31bc7f78c533d93bfcbe8ba5ede6d35ca4a1a7ece11937727166684fa0/197981cf89a-5950/node_modules/.pnpm/@stryker-mutator+core@9.0.1/node_modules/@stryker-mutator/core/dist/src/stryker.js:33:48) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+20:19:06 (11236) INFO Stryker This might be a known problem with a solution documented in our troubleshooting guide.
+20:19:06 (11236) INFO Stryker You can find it at https://stryker-mutator.io/docs/stryker-js/troubleshooting/
+20:21:26 (19240) INFO ConfigReader No config file specified. Running with command line arguments.
+20:21:26 (19240) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text"]
+20:21:26 (19240) INFO ConfigReader Use `stryker init` command to generate your config file.
+20:21:26 (19240) DEBUG PluginLoader Loading stryker-* from C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules
+20:21:26 (19240) DEBUG PluginLoader Expression stryker-* not resulted in plugins to load
+20:21:26 (19240) DEBUG PluginLoader Loading plugins C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules\stryker\src\reporters\index.js
+20:21:26 (19240) DEBUG PluginLoader Loading plugins C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules\stryker\src\mutators\index.js
+20:21:26 (19240) WARN InputFileResolver No files marked to be mutated, Stryker will perform a dry-run without actually mutating anything. You can configure the `mutate` property in your stryker.conf.js file (or use `--mutate` via command line).
+20:21:26 (19240) DEBUG InputFileResolver All input files: [
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\stryker.config.js",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\stryker.log",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\README.md",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\eslint.config.mjs",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\jest.config.js",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\package.json",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.css",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.test.tsx",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.tsx",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\gradient.tsx",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\styles.css",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\turborepo-logo.tsx",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tailwind.config.js",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tsconfig.json",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\turbo.json"
+]
+20:21:26 (19240) DEBUG InputFileResolver Files to mutate: []
+20:21:26 (19240) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+20:21:26 (19240) INFO InitialTestExecutor Starting initial test run. This may take a while.
+20:21:26 (19240) DEBUG Sandbox Creating a sandbox for files in C:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox3327187
+20:21:26 (19240) DEBUG Sandbox Creating test runner 0
+20:21:26 (19240) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+20:21:27 (19240) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		
+> @repo/ui@0.0.0 test
+> jest --runInBand --detectOpenHandles --forceExit
+
+
+node:internal/modules/cjs/loader:1408
+  throw err;
+  ^
+
+Error: Cannot find module 'C:\workspace\unmarred-codex-noleme\packages\ui\node_modules\.pnpm\jest@29.7.0_@types+node@22.15.30\node_modules\jest\bin\jest.js'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1405:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1061:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1066:22)
+    at Module._load (node:internal/modules/cjs/loader:1215:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:152:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.1.0
+
+20:23:20 (6488) INFO ConfigReader No config file specified. Running with command line arguments.
+20:23:20 (6488) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text"]
+20:23:20 (6488) INFO ConfigReader Use `stryker init` command to generate your config file.
+20:23:20 (6488) DEBUG PluginLoader Loading stryker-* from C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules
+20:23:20 (6488) DEBUG PluginLoader Expression stryker-* not resulted in plugins to load
+20:23:20 (6488) DEBUG PluginLoader Loading plugins C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules\stryker\src\reporters\index.js
+20:23:20 (6488) DEBUG PluginLoader Loading plugins C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules\stryker\src\mutators\index.js
+20:23:20 (6488) WARN InputFileResolver No files marked to be mutated, Stryker will perform a dry-run without actually mutating anything. You can configure the `mutate` property in your stryker.conf.js file (or use `--mutate` via command line).
+20:23:20 (6488) DEBUG InputFileResolver All input files: [
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\stryker.config.js",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\stryker.log",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\README.md",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\eslint.config.mjs",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\jest.config.js",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\package.json",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.css",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.test.tsx",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.tsx",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\gradient.tsx",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\styles.css",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\turborepo-logo.tsx",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tailwind.config.js",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tsconfig.json",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\turbo.json"
+]
+20:23:20 (6488) DEBUG InputFileResolver Files to mutate: []
+20:23:20 (6488) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+20:23:20 (6488) INFO InitialTestExecutor Starting initial test run. This may take a while.
+20:23:20 (6488) DEBUG Sandbox Creating a sandbox for files in C:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox4872757
+20:23:20 (6488) DEBUG Sandbox Creating test runner 0
+20:23:20 (6488) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+20:23:23 (6488) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		
+> @repo/ui@0.0.0 test
+> jest --runInBand --detectOpenHandles --forceExit
+
+
+No tests found, exiting with code 1
+Run with `--passWithNoTests` to exit with code 0
+In C:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox4872757
+  10 files checked.
+  testMatch: C:/workspace/unmarred-codex-noleme/packages/ui\.stryker-tmp/sandbox4872757/src/**/*.test.{ts,tsx} - 0 matches
+  testPathIgnorePatterns: C:\\workspace\\unmarred-codex-noleme\\packages\\ui\.stryker-tmp\\sandbox4872757\\node_modules\\, C:\\workspace\\unmarred-codex-noleme\\packages\\ui\.stryker-tmp\\sandbox4872757\\dist\\ - 10 matches
+  testRegex:  - 0 matches
+Pattern:  - 0 matches
+
+20:24:01 (14064) INFO ConfigReader No config file specified. Running with command line arguments.
+20:24:01 (14064) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text"]
+20:24:01 (14064) INFO ConfigReader Use `stryker init` command to generate your config file.
+20:24:01 (14064) DEBUG PluginLoader Loading stryker-* from C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules
+20:24:01 (14064) DEBUG PluginLoader Expression stryker-* not resulted in plugins to load
+20:24:01 (14064) DEBUG PluginLoader Loading plugins C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules\stryker\src\reporters\index.js
+20:24:01 (14064) DEBUG PluginLoader Loading plugins C:\Users\amita\AppData\Local\pnpm-cache\dlx\6685698bbcd374d8e87af172ab7d2969fe64a0b78df09a1e21cd63ede4f87856\197981a33e6-345c\node_modules\.pnpm\stryker@0.35.1_stryker-api@0.24.1\node_modules\stryker\src\mutators\index.js
+20:24:01 (14064) WARN InputFileResolver No files marked to be mutated, Stryker will perform a dry-run without actually mutating anything. You can configure the `mutate` property in your stryker.conf.js file (or use `--mutate` via command line).
+20:24:01 (14064) DEBUG InputFileResolver All input files: [
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\stryker.config.js",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\stryker.log",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\README.md",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\eslint.config.mjs",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\jest.config.js",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\package.json",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.css",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.test.tsx",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\card.tsx",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\gradient.tsx",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\styles.css",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\src\\turborepo-logo.tsx",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tailwind.config.js",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\tsconfig.json",
+  "C:\\workspace\\unmarred-codex-noleme\\packages\\ui\\turbo.json"
+]
+20:24:01 (14064) DEBUG InputFileResolver Files to mutate: []
+20:24:01 (14064) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+20:24:01 (14064) INFO InitialTestExecutor Starting initial test run. This may take a while.
+20:24:01 (14064) DEBUG Sandbox Creating a sandbox for files in C:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox9645293
+20:24:01 (14064) DEBUG Sandbox Creating test runner 0
+20:24:01 (14064) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+20:24:04 (14064) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		
+> @repo/ui@0.0.0 test
+> jest --runInBand --detectOpenHandles --forceExit
+
+
+No tests found, exiting with code 1
+Run with `--passWithNoTests` to exit with code 0
+In C:\workspace\unmarred-codex-noleme\packages\ui\.stryker-tmp\sandbox9645293
+  10 files checked.
+  testMatch: C:/workspace/unmarred-codex-noleme/packages/ui\.stryker-tmp/sandbox9645293/src/**/*.test.{ts,tsx} - 0 matches
+  testPathIgnorePatterns: C:\\workspace\\unmarred-codex-noleme\\packages\\ui\.stryker-tmp\\sandbox9645293\\node_modules\\, C:\\workspace\\unmarred-codex-noleme\\packages\\ui\.stryker-tmp\\sandbox9645293\\dist\\ - 10 matches
+  testRegex:  - 0 matches
+Pattern:  - 0 matches
+

@@ -10,7 +10,8 @@
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "mutation": "turbo run mutation",
-    "mutation:base-ui": "turbo run mutation --filter=@repo/base-ui"
+    "mutation:base-ui": "turbo run mutation --filter=@repo/base-ui",
+    "plop": "plop"
   },
   "devDependencies": {
     "@stryker-mutator/core": "^8.0.0",
@@ -32,5 +33,8 @@
   "packageManager": "pnpm@8.15.6",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "plop": "^4.0.1"
   }
 }
