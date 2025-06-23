@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
 import { Button } from "@repo/design-system/button";
-
+import { IconClose, IconMenu } from "@repo/design-system/icons";
 export function Card({
   title,
   children,
@@ -10,9 +10,9 @@ export function Card({
 }) {
   return (
     <div className="card">
-      <h3 className="card__title">{title}</h3>
+      <IconMenu color="red" /> <h3 className="card__title">{title}</h3>
       <div className="card__content">{children}</div>
-      <Button text="Explore Codex" />
+      <Button text="Explore Code B" /> <IconClose />
     </div>
   );
 }
