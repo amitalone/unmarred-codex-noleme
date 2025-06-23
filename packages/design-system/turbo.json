@@ -3,6 +3,19 @@
   "tasks": {
     "build": {
       "outputs": ["dist/**"]
+    },
+    "dev": {
+      "with": ["dev:styles", "dev:components"]
+    },
+    "dev:styles": {
+      "cache": false,
+      "persistent": true,
+      "outputs": ["dist/**"]
+    },
+    "dev:components": {
+      "cache": false,
+      "persistent": true,
+      "outputs": ["dist/**"]
     }
   }
 }

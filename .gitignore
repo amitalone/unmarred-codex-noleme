@@ -2,7 +2,7 @@
 
 # dependencies
 reports
-stryker-tmp
+.stryker-tmp
 node_modules
 .pnp
 .pnp.js

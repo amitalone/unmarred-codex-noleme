@@ -1,5 +1,7 @@
 /* Component-level styles for the design-system package */
 @import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
 
 /* Import component-specific CSS files */
 @import "./button/button.css";

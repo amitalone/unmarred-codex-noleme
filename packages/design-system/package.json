@@ -23,7 +23,8 @@
     "test": "jest --runInBand --detectOpenHandles --forceExit",
     "test:watch": "jest --watch",
     "mutation": "stryker run",
-    "mutation:report": "open reports/mutation/html/index.html"
+    "mutation:report": "open reports/mutation/html/index.html",
+    "postinstall": "flowbite-react patch && flowbite-react register"
   },
   "peerDependencies": {
     "react": "^19",
@@ -51,5 +52,10 @@
     "tailwindcss": "^4.1.5",
     "ts-jest": "^29.1.2",
     "typescript": "5.8.2"
+  },
+  "dependencies": {
+    "flowbite": "^3.1.2",
+    "flowbite-react": "^0.11.8",
+    "react-icons": "^5.5.0"
   }
 }

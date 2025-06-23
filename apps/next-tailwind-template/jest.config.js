@@ -31,7 +31,11 @@ const config = {
   ],
   // Next.js specific settings
   moduleDirectories: ["node_modules", "<rootDir>/"],
-  testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
+  testPathIgnorePatterns: [
+    "<rootDir>/node_modules/",
+    "<rootDir>/.next/",
+    "<rootDir>/.stryker-tmp/",
+  ],
 };
 
 export default config;

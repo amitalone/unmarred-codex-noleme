@@ -25,7 +25,11 @@ module.exports = {
     "!src/**/index.{ts,tsx}",
   ],
   setupFilesAfterEnv: ["@repo/jest-config/jest.setup.js"],
-  testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/dist/"],
+  testPathIgnorePatterns: [
+    "<rootDir>/node_modules/",
+    "<rootDir>/dist/",
+    "<rootDir>/.stryker-tmp/",
+  ],
   coveragePathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/dist/"],
   watchPlugins: [
     "jest-watch-typeahead/filename",
