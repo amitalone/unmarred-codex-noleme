@@ -15,7 +15,7 @@ jest.mock("react", () => {
 });
 
 // Mock the imported components
-jest.mock("@repo/ui/card", () => ({
+jest.mock("@repo/base-ui/card", () => ({
   Card: ({ title, children }: { title: string; children: React.ReactNode }) => (
     <div data-testid="mocked-card">
       <h3>{title}</h3>
@@ -24,11 +24,11 @@ jest.mock("@repo/ui/card", () => ({
   ),
 }));
 
-jest.mock("@repo/ui/gradient", () => ({
+jest.mock("@repo/base-ui/gradient", () => ({
   Gradient: () => <div data-testid="mocked-gradient" />,
 }));
 
-jest.mock("@repo/ui/turborepo-logo", () => ({
+jest.mock("@repo/base-ui/turborepo-logo", () => ({
   TurborepoLogo: () => <div data-testid="mocked-turborepo-logo" />,
 }));
 

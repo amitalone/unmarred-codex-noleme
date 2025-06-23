@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     // Improve CSS hot reloading
-    optimizePackageImports: ['@repo/design-system', '@repo/ui'],
+    optimizePackageImports: ['@repo/design-system', '@repo/base-ui'],
     webpackBuildWorker: true,
   },
   webpack: (config) => {

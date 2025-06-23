@@ -10,7 +10,7 @@
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "mutation": "turbo run mutation",
-    "mutation:ui": "turbo run mutation --filter=@repo/ui"
+    "mutation:base-ui": "turbo run mutation --filter=@repo/base-ui"
   },
   "devDependencies": {
     "@stryker-mutator/core": "^8.0.0",

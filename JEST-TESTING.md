@@ -69,7 +69,7 @@ import { render, screen } from "@testing-library/react";
 import Page from "./page";
 
 // Mock the imported components
-jest.mock("@repo/ui/card", () => ({
+jest.mock("@repo/base-ui/card", () => ({
   Card: ({ title, children }) => (
     <div data-testid="mocked-card">
       <h3>{title}</h3>
