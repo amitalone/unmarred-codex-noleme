@@ -1,0 +1,20 @@
+/* BaseLayout component styles */
+.base-layout {
+  @apply min-h-screen w-full;
+}
+
+.base-layout__container {
+  @apply flex flex-col md:flex-row min-h-screen w-full;
+}
+
+.base-layout__left-column {
+  @apply w-full md:min-w-[16px] md:w-auto p-1;
+}
+
+.base-layout__middle-column {
+  @apply w-full flex-grow p-1;
+}
+
+.base-layout__right-column {
+  @apply w-full md:min-w-[16px] md:w-auto p-1;
+}

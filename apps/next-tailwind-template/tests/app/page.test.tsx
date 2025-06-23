@@ -24,14 +24,6 @@ jest.mock("@repo/base-ui/card", () => ({
   ),
 }));
 
-jest.mock("@repo/base-ui/gradient", () => ({
-  Gradient: () => <div data-testid="mocked-gradient" />,
-}));
-
-jest.mock("@repo/base-ui/turborepo-logo", () => ({
-  TurborepoLogo: () => <div data-testid="mocked-turborepo-logo" />,
-}));
-
 jest.mock("next/image", () => ({
   __esModule: true,
   default: (props: any) => <img {...props} />,

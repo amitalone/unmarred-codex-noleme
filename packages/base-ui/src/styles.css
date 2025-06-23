@@ -6,3 +6,4 @@
 
 /* Import component-specific CSS files */
 @import "./card/card.css";
+@import "./baseLayout/baseLayout.css";
