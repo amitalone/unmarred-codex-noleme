@@ -1,3 +1,4 @@
 // Export all components from the base-ui package
 export * from "./card";
 export * from "./baseLayout";
+export * from "./sideBarLayout";
