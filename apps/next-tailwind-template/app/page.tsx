@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { Card } from "@repo/base-ui/card";
+//import { Card } from "@repo/base-ui/card";
+import { Card } from "@repo/face-swap-ui/card";
 
 export default function Page() {
   return (

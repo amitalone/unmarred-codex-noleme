@@ -2,6 +2,7 @@
 @import "@repo/tailwind-config";
 @import "@repo/base-ui/styles.css";
 @import "@repo/design-system/styles.css";
+@import "@repo/face-swap-ui/styles.css";
 
 :root {
   --foreground-rgb: 0, 0, 0;

@@ -7,13 +7,17 @@ import { Drawer } from "@repo/design-system/drawer";
 type SideBarLayoutProps = {
   children: ReactNode;
   className?: string;
+  drawerItem: ReactNode;
+  leftSidebar?: ReactNode;
 };
 
 export function SideBarLayout({
   children,
   className = "",
+  drawerItem,
+  leftSidebar,
 }: SideBarLayoutProps) {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -35,7 +39,7 @@ export function SideBarLayout({
       className="sidebar-layout__right-content"
       data-testid="sidebar-layout-right-content"
     >
-      Hello
+      {""}
     </div>
   );
 
@@ -45,11 +49,9 @@ export function SideBarLayout({
         open={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
         placement="left"
-        title="AppTitle"
+        title="Face-Swap"
       >
-        <div className="drawer-content">
-          <p>Drawer content goes here</p>
-        </div>
+        {drawerItem}
       </Drawer>
       <BaseLayout
         leftColumn={leftContent}
