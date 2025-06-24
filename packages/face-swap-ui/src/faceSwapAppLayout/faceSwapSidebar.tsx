@@ -8,21 +8,34 @@ import {
 } from "@repo/design-system/icons";
 import { Sidebar, SidebarItem } from "@repo/design-system/sidebar";
 
-export function FaceSwapSidebar({ className = "" }: { className?: string }) {
+export type SideBarLink = {
+  href: string;
+  icon: React.ComponentType<any>;
+  label: string;
+  linkComponent?: React.ReactNode;
+};
+
+export function FaceSwapSidebar({
+  className = "",
+  sideBarLinks = [],
+}: {
+  className?: string;
+  sideBarLinks?: SideBarLink[];
+}) {
   return (
     <Sidebar
       className={`face-swap-sidebar ${className}`}
       aria="Face Swap Navigation"
     >
-      <SidebarItem href="#" icon={IconImages}>
-        {" "}
-      </SidebarItem>
-      <SidebarItem href="#" icon={IconFaceRetouchingNatural}>
-        {" "}
-      </SidebarItem>
-      <SidebarItem href="#" icon={IconBodySwapping}>
-        {" "}
-      </SidebarItem>
+      {sideBarLinks.map((link, index) => (
+        <SidebarItem
+          key={index}
+          icon={link.icon}
+          href={link.linkComponent ? undefined : link.href}
+        >
+          {link.linkComponent || link.label}
+        </SidebarItem>
+      ))}
     </Sidebar>
   );
 }

@@ -45,11 +45,13 @@ export function SideBarLayout({
 
   return (
     <>
+      {" "}
       <Drawer
         open={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
         placement="left"
         title="Face-Swap"
+        className="face-swap-drawer"
       >
         {drawerItem}
       </Drawer>

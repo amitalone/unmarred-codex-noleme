@@ -168,6 +168,7 @@ export function MasonryImageGrid({
                 src={image.imageSrc}
                 alt={image.alt || `Image ${index + 1}`}
                 className="masonry-image-grid__image"
+                loading="lazy"
               />
               {actionButtonList && actionButtonList.length > 0 ? (
                 <div className="masonry-image-grid__action-bar">

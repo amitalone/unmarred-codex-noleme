@@ -5,3 +5,11 @@
   --purple-1000: #a853ba;
   --red-1000: #e92a67;
 }
+
+/* Global drawer width override */
+[data-testid="flowbite-drawer"] > div:last-child,
+[data-testid="flowbite-drawer-body"],
+[role="dialog"][aria-modal="true"] > div > div {
+  max-width: 200px !important;
+  width: 200px !important;
+}

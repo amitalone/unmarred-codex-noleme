@@ -10,3 +10,16 @@
 .sidebar-layout__right-content {
   @apply flex justify-center items-center font-medium p-4;
 }
+
+/* Sidebar layout drawer styles */
+.sidebar-layout .face-swap-drawer,
+.sidebar-layout [data-testid="flowbite-drawer"],
+.sidebar-layout [data-testid="flowbite-drawer-body"] {
+  max-width: 200px !important;
+  width: 200px !important;
+}
+
+/* Override the Flowbite drawer container */
+body [role="dialog"][aria-modal="true"] > div > div {
+  max-width: 200px !important;
+}

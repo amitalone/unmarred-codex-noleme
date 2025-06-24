@@ -8,4 +8,6 @@
 /* Import component-specific CSS files */
 @import "./card/card.css";
 
-@import "./faceSwapAppLayout/faceSwapAppLayout.css"
+@import "./faceSwapAppLayout/faceSwapAppLayout.css";
+@import "./faceSwapAppLayout/faceSwapSidebar.css";
+@import "./faceSwapAppLayout/faceSwapDrawer.css";
