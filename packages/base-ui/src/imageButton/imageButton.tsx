@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Avatar } from "@repo/design-system/avatar";
 
 type ImageButtonProps = {
@@ -19,6 +19,10 @@ export function ImageButton({
   payload,
   ...rest
 }: ImageButtonProps) {
+  useEffect(() => {
+    console.log("Payload changed:", payload);
+  }, [payload]);
+
   return (
     <div
       className="cursor-pointer hover:opacity-80 transition-opacity duration-200 ease-in-out"

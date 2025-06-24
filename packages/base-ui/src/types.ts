@@ -1,9 +1,8 @@
 export interface BaseImage {
-  imageSrc: string;
+  src: string;
   alt?: string;
   width?: number;
   height?: number;
-  type: string;
 }
 
 export interface MasonryImageGridProps {

@@ -24,6 +24,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "clean": "rimraf dist",
     "build:styles": "tailwindcss -i ./src/styles.css -o ./dist/index.css --config ./tailwind.config.js",
     "build:components": "tsc",
     "build": "pnpm build:styles && pnpm build:components",

@@ -12,7 +12,7 @@
 }
 
 .masonry-image-grid__image-wrapper {
-  @apply overflow-hidden rounded-md border-2 border-gray-200 shadow-md transition-transform duration-300 ease-in-out cursor-pointer;
+  @apply overflow-hidden rounded-md shadow-md transition-transform duration-300 ease-in-out cursor-pointer hover:shadow-lg;
 }
 
 .masonry-image-grid__image {

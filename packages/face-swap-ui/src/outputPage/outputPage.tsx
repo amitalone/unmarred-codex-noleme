@@ -1,4 +1,4 @@
-import React, { type ReactNode } from "react";
+import React, { type ReactNode, useCallback, useState, useEffect } from "react";
 import { FixedHeightContainer } from "@repo/base-ui/fixedHeightContainer";
 import { MasonryImageGrid } from "@repo/base-ui/masonryImageGrid";
 import { type BaseImage } from "@repo/base-ui/types";
@@ -6,14 +6,8 @@ import { FaceSwapAppPage } from "../faceSwapAppPage";
 import { IconButton } from "@repo/base-ui/iconButton";
 import { ImageButton } from "@repo/base-ui/imageButton";
 import { IconDelete, IconBookmark } from "@repo/design-system/icons";
-import {
-  deleteActionHandler,
-  bookmarkActionHandler,
-  imageActionHandler,
-  squareImageActionHandler,
-  ButtonNames,
-  buttonActionHandler,
-} from "./outputPage.event.handler";
+import { ButtonNames, buttonActionHandler } from "./outputPage.event.handler";
+import { type OutputImage } from "../types";
 
 export interface OutputPageProps {
   images: BaseImage[];
@@ -21,52 +15,95 @@ export interface OutputPageProps {
   className?: string;
 }
 
+const FaceButton = ({ payload }: { payload?: OutputImage }) => {
+  const [src, setSrc] = useState<string>("");
+
+  useEffect(() => {
+    if (payload?.face?.src) {
+      setSrc(payload.face.src);
+    }
+  }, [payload]);
+
+  return (
+    <ImageButton
+      key="face"
+      src={src}
+      alt="Face image"
+      data-testid="face-image-button"
+      payload={payload}
+      onClick={(e: React.MouseEvent<Element>, props) => {
+        const outputImage = props?.payload as OutputImage;
+        buttonActionHandler(ButtonNames.FACE_IMAGE, outputImage);
+      }}
+    />
+  );
+};
+
+const ModelButton = ({ payload }: { payload?: OutputImage }) => {
+  const [src, setSrc] = useState<string>("");
+
+  useEffect(() => {
+    if (payload?.model?.src) {
+      setSrc(payload.model.src);
+    }
+  }, [payload]);
+
+  return (
+    <ImageButton
+      key="model"
+      src={src}
+      alt="Model image"
+      data-testid="model-image-button"
+      payload={payload}
+      onClick={(e: React.MouseEvent<Element>, props) => {
+        const outputImage = props?.payload as OutputImage;
+        buttonActionHandler(ButtonNames.MODEL_IMAGE, outputImage);
+      }}
+    />
+  );
+};
+
 export function OutputPage({
   images,
   title = "Output",
   className = "",
 }: OutputPageProps) {
-  const actionButtonList: ReactNode[] = [
+  // Create default action buttons
+  const outputImageActionButtonList: ReactNode[] = [
     <IconButton
+      key="delete"
       reactIcon={IconDelete}
       textColor="text-white"
       shadowClass="shadow-md"
       data-testid="delete-button"
       onClick={(e: React.MouseEvent<Element>, props) => {
-        buttonActionHandler(ButtonNames.DELETE, props?.payload);
+        const outputImage = props?.payload as OutputImage;
+        buttonActionHandler(ButtonNames.DELETE, outputImage);
       }}
     />,
     <IconButton
+      key="bookmark"
       reactIcon={IconBookmark}
       textColor="text-white"
       shadowClass="shadow-md"
       data-testid="bookmark-button"
       onClick={(e: React.MouseEvent<Element>, props) => {
-        buttonActionHandler(ButtonNames.BOOKMARK, props?.payload);
+        const outputImage = props?.payload as OutputImage;
+        buttonActionHandler(ButtonNames.BOOKMARK, outputImage);
       }}
     />,
-    <ImageButton
-      src="https://flowbite-react.com/images/people/profile-picture-5.jpg"
-      alt="Description of the image"
-      data-testid="image-button"
-      onClick={(e: React.MouseEvent<Element>, props) => {
-        buttonActionHandler(ButtonNames.FACE_IMAGE, props?.payload);
-      }}
-    />,
-    <ImageButton
-      src="https://flowbite-react.com/images/people/profile-picture-5.jpg"
-      alt="Description of the image"
-      onClick={(e: React.MouseEvent<Element>, props) => {
-        buttonActionHandler(ButtonNames.MODEL_IMAGE, props?.payload);
-      }}
-      data-testid="image-button"
-      rounded={false}
-    />,
+    <FaceButton key="face" payload={undefined} />,
+    <ModelButton key="model" payload={undefined} />,
   ];
+
   return (
     <FaceSwapAppPage title={title} className={className}>
       <FixedHeightContainer height="85vh">
-        <MasonryImageGrid images={images} actionButtonList={actionButtonList} />
+        {" "}
+        <MasonryImageGrid
+          images={images}
+          actionButtonList={outputImageActionButtonList}
+        />
       </FixedHeightContainer>
     </FaceSwapAppPage>
   );

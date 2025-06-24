@@ -153,7 +153,7 @@ export function MasonryImageGrid({
       >
         {images.map((image, index) => (
           <div
-            key={`${image.imageSrc}-${index}`}
+            key={`${image.src}-${index}`}
             ref={(el) => setImageRef(el, index)}
             className="masonry-image-grid__item"
             style={{
@@ -172,7 +172,7 @@ export function MasonryImageGrid({
             <div className="masonry-image-grid__image-wrapper has-image-action-bar">
               {" "}
               <img
-                src={image.imageSrc}
+                src={image.src}
                 alt={image.alt || `Image ${index + 1}`}
                 className="masonry-image-grid__image"
                 loading="lazy"
@@ -183,7 +183,9 @@ export function MasonryImageGrid({
                     {" "}
                     {actionButtonList.map((button, btnIndex) => (
                       <Fragment key={`action-button-${btnIndex}`}>
-                        {React.cloneElement(button, { payload: image })}
+                        {React.cloneElement(button as React.ReactElement, {
+                          payload: image,
+                        })}
                       </Fragment>
                     ))}
                   </ImageActionBar>
