@@ -1,22 +1,14 @@
 "use client";
 import "./globals.css";
-
 import { FaceSwapAppLayout } from "@repo/face-swap-ui/faceSwapAppLayout";
 import Link from "next/link";
+import { Geist } from "next/font/google";
 import {
   IconImages,
   IconBodySwapping,
   IconFaceRetouchingNatural,
 } from "@repo/design-system/icons";
-import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-
 const geist = Geist({ subsets: ["latin"] });
-
-// export const metadata: Metadata = {
-//   title: "Welcome to The Unmarred Codex of Nólemë!",
-//   description: "Quality and the Wisdom, contained within!",
-// };
 
 const sideBarLinks = [
   {
