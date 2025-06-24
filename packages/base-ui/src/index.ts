@@ -6,3 +6,5 @@ export * from "./masonryImageGrid";
 export * from "./fixedHeightContainer";
 export * from "./imageActionBar";
 export * from "./types";
+export * from "./iconButton";
+export * from "./imageButton";

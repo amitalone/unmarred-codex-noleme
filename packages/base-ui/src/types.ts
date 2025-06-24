@@ -40,4 +40,10 @@ export interface MasonryImageGridProps {
    * Additional CSS class name
    */
   className?: string;
+  
+  /**
+   * Optional list of action buttons to render in the ImageActionBar
+   * If not provided, the default delete button will be rendered
+   */
+  actionButtonList?: React.ReactNode[];
 }

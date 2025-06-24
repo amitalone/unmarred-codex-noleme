@@ -1,0 +1,62 @@
+// In a real implementation, you would need to ensure your imports are correctly set up.
+// We're creating a placeholder implementation assuming the Avatar component will be available.
+
+import React from "react";
+
+// Define a simplified Avatar interface to represent the component we're using
+interface AvatarProps {
+  img?: string;
+  alt?: string;
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  rounded?: boolean;
+  bordered?: boolean;
+  className?: string;
+}
+
+// This is a placeholder for the actual Avatar component
+const Avatar = (props: AvatarProps) => {
+  // This component would be replaced by the actual Avatar from design-system
+  return (
+    <div 
+      className={`avatar ${props.rounded ? 'rounded-full' : ''} size-${props.size || 'md'}`}
+      data-testid="avatar"
+    >
+      <img src={props.img} alt={props.alt || ''} className={props.className} />
+    </div>
+  );
+};
+
+type ImageButtonProps = {
+  src: string;
+  alt: string;
+  onClick?: (e: React.MouseEvent<Element>) => void;
+  "data-testid"?: string;
+};
+
+export function ImageButton({
+  src,
+  alt,
+  onClick,
+  "data-testid": testId,
+}: ImageButtonProps) {
+  return (
+    <div
+      className="cursor-pointer hover:opacity-80 transition-opacity duration-200 ease-in-out"
+      onClick={(e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (onClick) {
+          onClick(e);
+        }
+      }}
+      data-testid={testId}
+    >
+      <Avatar 
+        img={src} 
+        alt={alt} 
+        size="md" 
+        rounded 
+      />
+    </div>
+  );
+}

@@ -1,7 +1,15 @@
 "use client";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, Fragment } from "react";
 import { MasonryImageGridProps } from "../types";
 import { createCellPositioner } from "./createCellPositioner";
+import { ImageActionBar } from "../imageActionBar";
+import { IconButton } from "../iconButton";
+import {
+  IconDelete,
+  IconBodySwapping,
+  IconMenu,
+} from "@repo/design-system/icons";
+import { Children } from "react";
 
 export function MasonryImageGrid({
   images,
@@ -10,6 +18,7 @@ export function MasonryImageGrid({
   columnGap = 10,
   rowGap = 10,
   className = "",
+  actionButtonList,
 }: MasonryImageGridProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
@@ -153,12 +162,36 @@ export function MasonryImageGrid({
             }}
             data-testid={`masonry-image-grid-item-${index}`}
           >
-            <div className="masonry-image-grid__image-wrapper">
+            {" "}
+            <div className="masonry-image-grid__image-wrapper has-image-action-bar">
               <img
                 src={image.imageSrc}
                 alt={image.alt || `Image ${index + 1}`}
                 className="masonry-image-grid__image"
               />
+              {actionButtonList && actionButtonList.length > 0 ? (
+                <div className="masonry-image-grid__action-bar">
+                  <ImageActionBar image={image}>
+                    {" "}
+                    {actionButtonList.map((button, btnIndex) => (
+                      <Fragment key={`action-button-${btnIndex}`}>
+                        {button}
+                      </Fragment>
+                    ))}
+                  </ImageActionBar>
+                </div>
+              ) : (
+                <div className="masonry-image-grid__action-bar">
+                  <ImageActionBar image={image}>
+                    <IconButton
+                      reactIcon={IconDelete}
+                      textColor="text-white"
+                      shadowClass="shadow-md"
+                      data-testid="close-button"
+                    />
+                  </ImageActionBar>
+                </div>
+              )}
             </div>
           </div>
         ))}

@@ -1,0 +1,34 @@
+import React from "react";
+import { Avatar } from "@repo/design-system/avatar";
+
+type ImageButtonProps = {
+  src: string;
+  alt: string;
+  onClick?: (e: React.MouseEvent<Element>) => void;
+  "data-testid"?: string;
+  rounded?: boolean;
+};
+
+export function ImageButton({
+  src,
+  alt,
+  onClick,
+  "data-testid": testId,
+  rounded = true,
+}: ImageButtonProps) {
+  return (
+    <div
+      className="cursor-pointer hover:opacity-80 transition-opacity duration-200 ease-in-out"
+      onClick={(e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (onClick) {
+          onClick(e);
+        }
+      }}
+      data-testid={testId}
+    >
+      <Avatar img={src} alt={alt} size="sm" rounded={rounded} />
+    </div>
+  );
+}

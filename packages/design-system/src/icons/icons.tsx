@@ -5,7 +5,11 @@ import { MdFaceRetouchingNatural } from "react-icons/md";
 import { FaFileImport } from "react-icons/fa6";
 import { IoIosImages } from "react-icons/io";
 import { MdOutlineImageSearch } from "react-icons/md";
+import { TbHttpDelete } from "react-icons/tb";
+import { FaRegBookmark } from "react-icons/fa6";
 
+export const IconBookmark = FaRegBookmark;
+export const IconDelete = TbHttpDelete;
 export const IconClose = IoClose;
 export const IconMenu = GiHamburgerMenu;
 export const IconBodySwapping = GiBodySwapping;

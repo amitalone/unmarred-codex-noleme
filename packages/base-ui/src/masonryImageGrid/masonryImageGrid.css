@@ -12,7 +12,7 @@
 }
 
 .masonry-image-grid__image-wrapper {
-  @apply overflow-hidden rounded-md border-2 border-gray-200 shadow-md transition-transform duration-300 ease-in-out;
+  @apply overflow-hidden rounded-md border-2 border-gray-200 shadow-md transition-transform duration-300 ease-in-out cursor-pointer;
 }
 
 .masonry-image-grid__image {
@@ -21,4 +21,8 @@
 
 .masonry-image-grid__image:hover {
   @apply transform scale-105;
+}
+
+.masonry-image-grid__action-bar {
+  @apply p-0 absolute right-0 bottom-2 left-0 z-30  opacity-0 backdrop-blur-sm transition-opacity duration-300 hover:opacity-100;
 }

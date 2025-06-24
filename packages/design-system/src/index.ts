@@ -3,4 +3,5 @@ export * from "./drawer/drawer";
 // If icons exists
 export * from "./icons/icons";
 export * from "./sidebar";
+export * from "./avatar";
 // ...add other exports as needed...

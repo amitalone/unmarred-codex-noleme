@@ -1,6 +1,6 @@
 /* ImageActionBar component styles using BEM format */
 .image-action-bar {
-  @apply relative overflow-hidden;
+  @apply relative overflow-hidden flex flex-row  justify-evenly;
 }
 
 .image-action-bar__image-container {
