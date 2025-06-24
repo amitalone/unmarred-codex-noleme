@@ -1,0 +1,8 @@
+/* OutputPage component styles using BEM format and Tailwind utility classes */
+.output-page {
+  @apply w-full h-full;
+}
+
+.output-page__title {
+  @apply text-2xl font-bold mb-4;
+}

@@ -1,0 +1,38 @@
+/* ImageActionBar component styles using BEM format */
+.image-action-bar {
+  @apply relative overflow-hidden;
+}
+
+.image-action-bar__image-container {
+  @apply w-full;
+}
+
+.image-action-bar__image {
+  @apply w-full h-auto object-cover;
+}
+
+.image-action-bar__actions {
+  @apply absolute w-full p-2 flex z-10;
+}
+
+/* Position variants */
+.image-action-bar--top .image-action-bar__actions {
+  @apply top-0;
+}
+
+.image-action-bar--bottom .image-action-bar__actions {
+  @apply bottom-0;
+}
+
+/* Alignment variants */
+.image-action-bar--align-start .image-action-bar__actions {
+  @apply justify-start;
+}
+
+.image-action-bar--align-center .image-action-bar__actions {
+  @apply justify-center;
+}
+
+.image-action-bar--align-end .image-action-bar__actions {
+  @apply justify-end;
+}

@@ -7,4 +7,7 @@
 /* Import component-specific CSS files */
 @import "./card/card.css";
 @import "./baseLayout/baseLayout.css";
+@import "./fixedHeightContainer/fixedHeightContainer.css";
 @import "./sideBarLayout/sideBarLayout.css";
+@import "./masonryImageGrid/masonryImageGrid.css";
+@import "./imageActionBar/imageActionBar.css";

@@ -1,0 +1,24 @@
+/* MasonryImageGrid component styles */
+.masonry-image-grid {
+  @apply w-full box-border;
+}
+
+.masonry-image-grid__container {
+  @apply w-full relative overflow-hidden;
+}
+
+.masonry-image-grid__item {
+  @apply box-border;
+}
+
+.masonry-image-grid__image-wrapper {
+  @apply overflow-hidden rounded-md border-2 border-gray-200 shadow-md transition-transform duration-300 ease-in-out;
+}
+
+.masonry-image-grid__image {
+  @apply w-full h-auto object-cover transition-transform duration-300 ease-in-out;
+}
+
+.masonry-image-grid__image:hover {
+  @apply transform scale-105;
+}

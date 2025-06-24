@@ -1,0 +1,10 @@
+/* FaceSwapAppPage component styles using BEM format and Tailwind utility classes */
+.face-swap-app-page {
+  width: 100%;
+}
+
+.face-swap-app-page__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}

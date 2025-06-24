@@ -2,3 +2,7 @@
 export * from "./card";
 export * from "./baseLayout";
 export * from "./sideBarLayout";
+export * from "./masonryImageGrid";
+export * from "./fixedHeightContainer";
+export * from "./imageActionBar";
+export * from "./types";
