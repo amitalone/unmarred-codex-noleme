@@ -4,38 +4,36 @@ import { MasonryImageGrid } from "@repo/base-ui/masonryImageGrid";
 import { type BaseImage } from "@repo/base-ui/types";
 import { FaceSwapAppPage } from "../faceSwapAppPage";
 import {
-  FaceButton,
-  ModelButton,
+  SelectButton,
   DeleteButton,
   BookmarkButton,
-} from "./outputActionButtions";
+  ResultsButton,
+} from "./imageGalleryPageActionButtons";
 
-export interface OutputPageProps {
+export interface imageGalleryPageProps {
   images: BaseImage[];
   title?: string;
   className?: string;
 }
 
-export function OutputPage({
+export function ImageGalleryPagePage({
   images,
-  title = "Output",
+  title,
   className = "",
-}: OutputPageProps) {
-  // Create default action buttons
-  const outputImageActionButtonList: ReactNode[] = [
+}: imageGalleryPageProps) {
+  const faceImageActionButtonList: ReactNode[] = [
+    SelectButton,
+    ResultsButton,
     DeleteButton,
     BookmarkButton,
-    <FaceButton key="face" payload={undefined} />,
-    <ModelButton key="model" payload={undefined} />,
   ];
 
   return (
-    <FaceSwapAppPage title={title} className={className}>
+    <FaceSwapAppPage title={title || ""} className={className}>
       <FixedHeightContainer height="85vh">
-        {" "}
         <MasonryImageGrid
           images={images}
-          actionButtonList={outputImageActionButtonList}
+          actionButtonList={faceImageActionButtonList}
         />
       </FixedHeightContainer>
     </FaceSwapAppPage>

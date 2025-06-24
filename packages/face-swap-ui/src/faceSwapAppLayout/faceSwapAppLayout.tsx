@@ -2,11 +2,9 @@
 import { type ReactNode, useState } from "react";
 import { SideBarLayout } from "@repo/base-ui/sideBarLayout";
 import {
-  IconImages,
-  IconBodySwapping,
-  IconFaceRetouchingNatural,
-} from "@repo/design-system/icons";
-import { FaceSwapSidebar, type SideBarLink } from "./faceSwapSidebar";
+  FaceSwapSidebar,
+  type SideBarLink,
+} from "../faceSwapSidebar/faceSwapSidebar";
 
 export function FaceSwapAppLayout({
   children,
@@ -17,8 +15,6 @@ export function FaceSwapAppLayout({
   className?: string;
   sideBarLinks?: SideBarLink[];
 }) {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
   return (
     <div
       className={`face-swap-app-layout ${className}`}

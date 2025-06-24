@@ -1,18 +1,23 @@
 import { IoClose } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { GiBodySwapping } from "react-icons/gi";
+import { IoMdBody } from "react-icons/io";
 import { MdFaceRetouchingNatural } from "react-icons/md";
 import { FaFileImport } from "react-icons/fa6";
 import { IoIosImages } from "react-icons/io";
 import { MdOutlineImageSearch } from "react-icons/md";
 import { TbHttpDelete } from "react-icons/tb";
 import { FaRegBookmark } from "react-icons/fa6";
+import { RiSwap2Line } from "react-icons/ri";
+import { IoCheckmarkDoneSharp } from "react-icons/io5";
 
+export const IconSelect = IoCheckmarkDoneSharp;
+export const IconSwapOutput = RiSwap2Line;
+export const IconSwap = RiSwap2Line;
 export const IconBookmark = FaRegBookmark;
 export const IconDelete = TbHttpDelete;
 export const IconClose = IoClose;
 export const IconMenu = GiHamburgerMenu;
-export const IconBodySwapping = GiBodySwapping;
+export const IconBodySwapping = IoMdBody;
 export const IconFaceRetouchingNatural = MdFaceRetouchingNatural;
 export const IconFileImport = FaFileImport;
 export const IconImages = IoIosImages;
