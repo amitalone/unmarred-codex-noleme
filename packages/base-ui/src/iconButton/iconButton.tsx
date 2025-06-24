@@ -2,14 +2,17 @@ type IconButtonProps = {
   reactIcon: React.ElementType;
   textColor: string;
   shadowClass: string;
-  onClick?: (e: React.MouseEvent<Element>) => void;
+  onClick?: (e: React.MouseEvent<Element>, props?: IconButtonProps) => void;
   "data-testid"?: string;
+  payload?: any;
 };
 
 export function IconButton({
   reactIcon: Icon,
   onClick,
   "data-testid": testId,
+  payload,
+  ...rest
 }: IconButtonProps) {
   return (
     <Icon
@@ -19,7 +22,12 @@ export function IconButton({
         e.preventDefault();
         e.stopPropagation();
         if (onClick) {
-          onClick(e);
+          onClick(e, {
+            reactIcon: Icon,
+            "data-testid": testId,
+            payload,
+            ...rest,
+          });
         }
       }}
       data-testid={testId}

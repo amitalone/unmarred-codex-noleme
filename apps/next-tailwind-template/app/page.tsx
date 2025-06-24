@@ -7,7 +7,8 @@ import { FixedHeightContainer } from "@repo/base-ui/fixedHeightContainer";
 import { OutputPage } from "@repo/face-swap-ui/outputPage";
 const demoImages = [
   {
-    imageSrc: "https://dummyimage.com/800x600/FF5733/fff&text=Nature", // Orange background, white text
+    imageSrc:
+      "http://localhost:8000/output/2025/05/27/face-003.jpg--model_f11t82u0.png--_00001_.png", // Orange background, white text
     alt: "Nature image",
     type: "OUTPUT",
   },

@@ -4,9 +4,10 @@ import { Avatar } from "@repo/design-system/avatar";
 type ImageButtonProps = {
   src: string;
   alt: string;
-  onClick?: (e: React.MouseEvent<Element>) => void;
+  onClick?: (e: React.MouseEvent<Element>, props?: ImageButtonProps) => void;
   "data-testid"?: string;
   rounded?: boolean;
+  payload?: any;
 };
 
 export function ImageButton({
@@ -15,6 +16,8 @@ export function ImageButton({
   onClick,
   "data-testid": testId,
   rounded = true,
+  payload,
+  ...rest
 }: ImageButtonProps) {
   return (
     <div
@@ -23,7 +26,14 @@ export function ImageButton({
         e.preventDefault();
         e.stopPropagation();
         if (onClick) {
-          onClick(e);
+          onClick(e, {
+            src,
+            alt,
+            "data-testid": testId,
+            rounded,
+            payload,
+            ...rest,
+          });
         }
       }}
       data-testid={testId}

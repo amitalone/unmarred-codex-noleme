@@ -1,5 +1,11 @@
 "use client";
-import { useCallback, useEffect, useRef, useState, Fragment } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  Fragment,
+} from "react";
 import { MasonryImageGridProps } from "../types";
 import { createCellPositioner } from "./createCellPositioner";
 import { ImageActionBar } from "../imageActionBar";
@@ -164,6 +170,7 @@ export function MasonryImageGrid({
           >
             {" "}
             <div className="masonry-image-grid__image-wrapper has-image-action-bar">
+              {" "}
               <img
                 src={image.imageSrc}
                 alt={image.alt || `Image ${index + 1}`}
@@ -176,7 +183,7 @@ export function MasonryImageGrid({
                     {" "}
                     {actionButtonList.map((button, btnIndex) => (
                       <Fragment key={`action-button-${btnIndex}`}>
-                        {button}
+                        {React.cloneElement(button, { payload: image })}
                       </Fragment>
                     ))}
                   </ImageActionBar>
