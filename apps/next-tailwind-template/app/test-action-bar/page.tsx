@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { ImageWithActionBar } from "@repo/base-ui";
 
 export default function TestPage() {
   // Sample image data
@@ -18,9 +17,7 @@ export default function TestPage() {
         <h2 className="text-xl mb-2">
           Example: Hover over the image to see the action bar
         </h2>
-        <div className="w-full h-64 overflow-hidden">
-          <ImageWithActionBar image={image} />
-        </div>
+        <div className="w-full h-64 overflow-hidden"></div>
       </div>
     </div>
   );

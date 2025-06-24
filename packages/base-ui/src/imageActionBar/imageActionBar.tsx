@@ -1,13 +1,4 @@
-import { Button } from "@repo/design-system/button";
-
 import { BaseImage } from "../types";
-import { IconButton } from "../iconButton/iconButton";
-import {
-  IconDelete,
-  IconBodySwapping,
-  IconMenu,
-} from "@repo/design-system/icons";
-import { Children } from "react";
 
 type ImageActionBarProps = {
   image: BaseImage;

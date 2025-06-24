@@ -1,5 +1,7 @@
-import { render, screen, act } from "@testing-library/react";
+import { render, screen, act, fireEvent } from "@testing-library/react";
 import { MasonryImageGrid } from "./masonryImageGrid";
+import { IconButton } from "../iconButton";
+import { IconDelete, IconBodySwapping } from "@repo/design-system/icons";
 
 // Mock ResizeObserver
 (window as any).ResizeObserver = class ResizeObserver {
@@ -10,9 +12,9 @@ import { MasonryImageGrid } from "./masonryImageGrid";
 
 // Sample images for testing
 const sampleImages = [
-  { imageSrc: "https://example.com/image1.jpg", alt: "Test image 1" },
-  { imageSrc: "https://example.com/image2.jpg", alt: "Test image 2" },
-  { imageSrc: "https://example.com/image3.jpg", alt: "Test image 3" },
+  { src: "https://example.com/image1.jpg", alt: "Test image 1" },
+  { src: "https://example.com/image2.jpg", alt: "Test image 2" },
+  { src: "https://example.com/image3.jpg", alt: "Test image 3" },
 ];
 
 describe("MasonryImageGrid", () => {
@@ -79,7 +81,6 @@ describe("MasonryImageGrid", () => {
     expect(gridElement).toHaveClass("masonry-image-grid");
     expect(gridElement).toHaveClass("test-class");
   });
-
   it("calculates positions after layout", async () => {
     // We need to wait for the setTimeout that triggers position calculation
     jest.useFakeTimers();
@@ -99,9 +100,126 @@ describe("MasonryImageGrid", () => {
 
     // Check that the container has a height set
     const container = screen.getByTestId("masonry-image-grid-container");
-    expect(container).toHaveStyle({ height: expect.any(String) });
+    expect(container).toHaveStyle({ height: "480px" });
 
     // Reset timers
     jest.useRealTimers();
+  });
+
+  it("renders default action bar with delete button when no custom actions provided", () => {
+    render(<MasonryImageGrid images={sampleImages} />);
+
+    // Find the action bars
+    const actionBars = document.querySelectorAll(
+      ".masonry-image-grid__action-bar"
+    );
+    expect(actionBars.length).toBe(sampleImages.length);
+
+    // Check for delete buttons
+    const deleteButtons = document.querySelectorAll(
+      "[data-testid='close-button']"
+    );
+    expect(deleteButtons.length).toBe(sampleImages.length);
+  });
+
+  it("renders custom action buttons when provided", () => {
+    const mockOnClick = jest.fn();
+
+    const customActionButtons = [
+      <IconButton
+        key="delete"
+        reactIcon={IconDelete}
+        onClick={mockOnClick}
+        textColor="text-white"
+        shadowClass="shadow-md"
+        data-testid="custom-delete-button"
+      />,
+      <IconButton
+        key="swap"
+        reactIcon={IconBodySwapping}
+        onClick={mockOnClick}
+        textColor="text-white"
+        shadowClass="shadow-md"
+        data-testid="custom-swap-button"
+      />,
+    ];
+
+    render(
+      <MasonryImageGrid
+        images={sampleImages}
+        actionButtonList={customActionButtons}
+      />
+    );
+
+    // Check for custom buttons
+    const customDeleteButtons = document.querySelectorAll(
+      "[data-testid='custom-delete-button']"
+    );
+    expect(customDeleteButtons.length).toBe(sampleImages.length);
+
+    const customSwapButtons = document.querySelectorAll(
+      "[data-testid='custom-swap-button']"
+    );
+    expect(customSwapButtons.length).toBe(sampleImages.length);
+
+    // Default delete buttons should not be present
+    const defaultDeleteButtons = document.querySelectorAll(
+      "[data-testid='close-button']"
+    );
+    expect(defaultDeleteButtons.length).toBe(0);
+  });
+  it("passes image data to custom action buttons", () => {
+    // Create an array to capture all payloads
+    const capturedPayloads: any[] = [];
+
+    const TestButton = ({ payload, ...props }: any) => {
+      // Store the payload in our array
+      capturedPayloads.push(payload);
+      return <button data-testid="test-button" {...props} />;
+    };
+
+    render(
+      <MasonryImageGrid
+        images={sampleImages}
+        actionButtonList={[<TestButton key="test" />]}
+      />
+    );
+
+    // Verify we received payloads for all images (twice the expected number due to the
+    // component architecture - both the ImageActionBar and the cloneElement add the payload)
+    expect(capturedPayloads.length).toBe(sampleImages.length * 2);
+
+    // Check that each image's data was correctly passed to at least one of the buttons
+    sampleImages.forEach((image) => {
+      expect(capturedPayloads).toContainEqual(image);
+    });
+  });
+
+  it("applies correct image styling", () => {
+    render(<MasonryImageGrid images={sampleImages} />);
+
+    // Check if images have the correct class
+    const images = document.querySelectorAll(".masonry-image-grid__image");
+    expect(images.length).toBe(sampleImages.length);
+
+    // Check if each image wrapper has the correct class for action bar
+    const wrappers = document.querySelectorAll(
+      ".masonry-image-grid__image-wrapper.has-image-action-bar"
+    );
+    expect(wrappers.length).toBe(sampleImages.length);
+  });
+
+  it("handles empty images array", () => {
+    render(<MasonryImageGrid images={[]} />);
+
+    // Container should still be rendered
+    expect(screen.getByTestId("masonry-image-grid")).toBeInTheDocument();
+    expect(
+      screen.getByTestId("masonry-image-grid-container")
+    ).toBeInTheDocument();
+
+    // No images should be rendered
+    const items = document.querySelectorAll(".masonry-image-grid__item");
+    expect(items.length).toBe(0);
   });
 });
