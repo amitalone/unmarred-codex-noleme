@@ -1,0 +1,18 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["build:lib"]
+    },
+    "build:lib": {
+      "outputs": ["dist/**"]
+    },
+    "dev": {
+      "with": ["dev:lib"]
+    },
+    "dev:lib": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

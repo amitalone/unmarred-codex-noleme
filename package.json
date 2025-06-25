@@ -2,16 +2,17 @@
   "name": "with-tailwind",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "check-types": "turbo run check-types",
+    "build": "turbo run build --concurrency 15",
+    "dev": "turbo run dev --concurrency 15",
+    "lint": "turbo run lint --concurrency 15",
+    "check-types": "turbo run check-types --concurrency 15",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "test": "turbo run test",
-    "test:watch": "turbo run test:watch",
-    "mutation": "turbo run mutation",
+    "test": "turbo run test --concurrency 15",
+    "test:watch": "turbo run test:watch --concurrency 15",
+    "mutation": "turbo run mutation --concurrency 15",
     "mutation:base-ui": "turbo run mutation --filter=@repo/base-ui",
-    "plop": "plop"
+    "plop": "plop",
+    "dev:face-swap-bff": "pnpm dev --filter @repo/shared-interfaces --filter face-swap-bff"
   },
   "devDependencies": {
     "@stryker-mutator/core": "^8.0.0",

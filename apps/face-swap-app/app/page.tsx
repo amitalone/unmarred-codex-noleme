@@ -1,5 +1,6 @@
 "use client";
 import { OutputPage } from "@repo/face-swap-ui/outputPage";
+
 const demoImages = [
   {
     src: "http://localhost:8000/output/2025/05/27/face-003.jpg--model_f11t82u0.png--_00001_.png",
@@ -214,7 +215,7 @@ const demoImages = [
 export default function Page() {
   return (
     <>
-      <OutputPage images={demoImages} title="Output Image Gallery" />
+      <OutputPage images={demoImages} title="Results Gallery" />
     </>
   );
 }

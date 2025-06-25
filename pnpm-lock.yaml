@@ -103,6 +103,9 @@ importers:
       '@repo/jest-config':
         specifier: workspace:*
         version: link:../../packages/jest-config
+      '@repo/shared-interfaces':
+        specifier: workspace:*
+        version: link:../../packages/shared-interfaces
       '@repo/stryker-config':
         specifier: workspace:*
         version: link:../../packages/stryker-config
@@ -595,6 +598,54 @@ importers:
         specifier: ^29.5.12
         version: 29.5.14
 
+  packages/shared-interfaces:
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@repo/jest-config':
+        specifier: workspace:*
+        version: link:../jest-config
+      '@repo/stryker-config':
+        specifier: workspace:*
+        version: link:../stryker-config
+      '@repo/tailwind-config':
+        specifier: workspace:*
+        version: link:../tailwind-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@stryker-mutator/core':
+        specifier: ^8.0.0
+        version: 8.7.1
+      '@stryker-mutator/jest-runner':
+        specifier: ^8.7.1
+        version: 8.7.1(@stryker-mutator/core@8.7.1)
+      '@stryker-mutator/typescript-checker':
+        specifier: ^8.0.0
+        version: 8.7.1(@stryker-mutator/core@8.7.1)(typescript@5.8.2)
+      '@types/jest':
+        specifier: ^29.5.12
+        version: 29.5.14
+      eslint:
+        specifier: ^9.29.0
+        version: 9.29.0
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0
+      jest-environment-jsdom:
+        specifier: ^29.7.0
+        version: 29.7.0
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+      ts-jest:
+        specifier: ^29.1.2
+        version: 29.4.0(@babel/core@7.27.4)(jest@29.7.0)(typescript@5.8.2)
+      typescript:
+        specifier: 5.8.2
+        version: 5.8.2
+
   packages/stryker-config:
     dependencies:
       '@stryker-mutator/core':
@@ -626,12 +677,12 @@ importers:
       '@fastify/multipart':
         specifier: ^9.0.3
         version: 9.0.3
-      '@repo/base-service-utils':
-        specifier: workspace:*
-        version: link:../../packages/base-service-utils
       '@repo/jest-config':
         specifier: workspace:*
         version: link:../../packages/jest-config
+      '@repo/shared-interfaces':
+        specifier: workspace:*
+        version: link:../../packages/shared-interfaces
       '@repo/stryker-config':
         specifier: workspace:*
         version: link:../../packages/stryker-config

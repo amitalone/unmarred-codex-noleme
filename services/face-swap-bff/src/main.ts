@@ -1,12 +1,10 @@
 import { start } from "./server.js";
 
-import { foo } from "@repo/base-service-utils";
 
 async function main(): Promise<void> {
-  console.log("Application is starting..."); // Simple console log before server starts logging
-  await start(); // Start the Fastify server
-  // The server's logger (configured in server.js) will indicate when it's listening.
-   // Call the foo function from base-service-utils
+  console.log("Application is starting...."); 
+  await start();
+  
 }
 
 main().catch((err: Error) => {

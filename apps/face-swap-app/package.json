@@ -21,6 +21,7 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@repo/shared-interfaces": "workspace:*",
     "@repo/face-swap-ui": "workspace:*",
     "@repo/design-system": "workspace:*",
     "@babel/preset-env": "^7.27.2",

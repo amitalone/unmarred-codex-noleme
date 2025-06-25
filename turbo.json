@@ -19,7 +19,7 @@
       "dependsOn": ["^dev"]
     },
     "face-swap-bff#dev": {
-      "dependsOn": ["^build"], // Only depend on build tasks of dependencies
+      "dependsOn": [],
       "cache": false,
       "persistent": true
     },

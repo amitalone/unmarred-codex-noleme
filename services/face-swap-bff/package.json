@@ -11,11 +11,10 @@
     "build": "tsc",
     "start": "node dist/main.js",
     "dev": "tsx watch src/main.ts",
-    "dev:watch": "tsx watch src/main.ts",
     "debug": "node --inspect-brk dist/main.js"
   },
   "dependencies": {
-    "@repo/base-service-utils": "workspace:*",
+    "@repo/shared-interfaces": "workspace:*",
     "@repo/jest-config": "workspace:*",
     "@repo/stryker-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
