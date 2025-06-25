@@ -23,7 +23,11 @@ module.exports = function (plop) {
         type: "list",
         name: "type",
         message: "Which type of application would you like to create?",
-        choices: ["nextjs-app-router-flowbite", "ui-component-library"],
+        choices: [
+          "nextjs-app-router-flowbite",
+          "ui-component-library",
+          "nodejs-library",
+        ],
       },
       {
         type: "input",
@@ -88,6 +92,40 @@ module.exports = function (plop) {
           destination: "packages/{{name}}",
           base: "tools/templates/ui-component-library",
           templateFiles: "tools/templates/ui-component-library/**/*.hbs",
+          globOptions: {
+            dot: true, // Include files that start with a dot
+          },
+          data: {
+            name: data.name,
+            kebabName: data.name, // Already in kebab case due to validation
+          },
+        });
+
+        // Update package.json in the new library
+        actions.push({
+          type: "modify",
+          path: "packages/{{name}}/package.json",
+          pattern: /"name": ".*"/,
+          template: '"name": "@repo/{{name}}"',
+        });
+
+        // Update turbo.json to include the new package in pipeline if needed
+        actions.push({
+          type: "modify",
+          path: "turbo.json",
+          pattern: /"pipeline": {/,
+          template:
+            '"pipeline": {\n    // Make sure {{name}} is included in the pipeline',
+          skip: () =>
+            "No need to modify turbo.json as it already includes all packages",
+        });
+      } else if (data.type === "nodejs-library") {
+        // Create a Node.js library
+        actions.push({
+          type: "addMany",
+          destination: "packages/{{name}}",
+          base: "tools/templates/nodejs-library",
+          templateFiles: "tools/templates/nodejs-library/**/*.hbs",
           globOptions: {
             dot: true, // Include files that start with a dot
           },

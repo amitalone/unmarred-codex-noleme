@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@repo/shared-interfaces": "workspace:*",
+    "@repo/service-utils": "workspace:*",
     "@repo/jest-config": "workspace:*",
     "@repo/stryker-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",

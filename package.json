@@ -12,7 +12,7 @@
     "mutation": "turbo run mutation --concurrency 15",
     "mutation:base-ui": "turbo run mutation --filter=@repo/base-ui",
     "plop": "plop",
-    "dev:face-swap-bff": "pnpm dev --filter @repo/shared-interfaces --filter face-swap-bff"
+    "dev:face-swap-bff": "pnpm dev --filter @repo/shared-interfaces --filter @repo/service-utils --filter face-swap-bff"
   },
   "devDependencies": {
     "@stryker-mutator/core": "^8.0.0",
