@@ -27,6 +27,7 @@ module.exports = function (plop) {
           "nextjs-app-router-flowbite",
           "ui-component-library",
           "nodejs-library",
+          "node-fastify-bff-service",
         ],
       },
       {
@@ -35,6 +36,23 @@ module.exports = function (plop) {
         message: "Which port would you like to use for the dev server?",
         default: "3001",
         when: (answers) => answers.type === "nextjs-app-router-flowbite",
+        validate: (value) => {
+          if (
+            /^\d+$/.test(value) &&
+            parseInt(value) > 0 &&
+            parseInt(value) < 65536
+          ) {
+            return true;
+          }
+          return "Port must be a valid number between 1 and 65535";
+        },
+      },
+      {
+        type: "input",
+        name: "servicePort",
+        message: "Which port would you like to use for the Fastify service?",
+        default: "3000",
+        when: (answers) => answers.type === "node-fastify-bff-service",
         validate: (value) => {
           if (
             /^\d+$/.test(value) &&
@@ -152,6 +170,41 @@ module.exports = function (plop) {
             '"pipeline": {\n    // Make sure {{name}} is included in the pipeline',
           skip: () =>
             "No need to modify turbo.json as it already includes all packages",
+        });
+      } else if (data.type === "node-fastify-bff-service") {
+        // Create a Node.js Fastify BFF service
+        actions.push({
+          type: "addMany",
+          destination: "services/{{name}}",
+          base: "tools/templates/node-fastify-bff-service",
+          templateFiles: "tools/templates/node-fastify-bff-service/**/*.hbs",
+          globOptions: {
+            dot: true, // Include files that start with a dot
+          },
+          data: {
+            name: data.name,
+            kebabName: data.name, // Already in kebab case due to validation
+            servicePort: data.servicePort || "3000", // Use the provided service port or default to 3000
+          },
+        });
+
+        // Update package.json in the new service
+        actions.push({
+          type: "modify",
+          path: "services/{{name}}/package.json",
+          pattern: /"name": ".*"/,
+          template: '"name": "@repo/{{name}}"',
+        });
+
+        // Update turbo.json to include the new service in pipeline if needed
+        actions.push({
+          type: "modify",
+          path: "turbo.json",
+          pattern: /"pipeline": {/,
+          template:
+            '"pipeline": {\n    // Make sure {{name}} is included in the pipeline',
+          skip: () =>
+            "No need to modify turbo.json as it already includes all services",
         });
       }
 

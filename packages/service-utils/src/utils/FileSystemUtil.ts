@@ -13,7 +13,7 @@ import {
   FilterOptions,
   ImagesAndFiltersResult,
   UploadedFile
-} from "./interfaces.js";
+} from "./interfaces";
 
 // const LOCAL_UPLOAD_IMAGE_FOLDER_BASE =
 //   "C:/workspace/face-swap-fs/imported-files";
@@ -357,7 +357,7 @@ const scanFolderRecursiveSimple = (basePath: string, subPath: string, scanType: 
   return results;
 };
 
-const getImagesAndFilters = (
+export const getImagesAndFilters = (
   folderPath: string,
   subFolderPath: string,
   pageNumber: number,
@@ -452,14 +452,4 @@ const faceModelComboExists = (
   return null;
 };
 
-export default {
-  processUploadedFiles,
-  moveFiles,
-  deleteFile,
-  getFolderStructure,
-  transformToTreeViewFormat,
-  getImagesAndFilters,
-  findCombination,
-  faceModelComboExists,
-  scanFolderRecursiveSimple
-};
+ 

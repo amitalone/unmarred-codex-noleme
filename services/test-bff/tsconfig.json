@@ -1,6 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@repo/typescript-config/node.json",
+  "moduleResolution": "NodeNext",
   "compilerOptions": {
     "outDir": "dist",
     "sourceMap": true

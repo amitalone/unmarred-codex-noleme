@@ -550,6 +550,16 @@ importers:
         version: 29.5.14
 
   packages/service-utils:
+    dependencies:
+      '@fastify/cors':
+        specifier: ^11.0.1
+        version: 11.0.1
+      '@fastify/multipart':
+        specifier: ^9.0.3
+        version: 9.0.3
+      fastify:
+        specifier: 5.3.3
+        version: 5.3.3
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -668,7 +678,7 @@ importers:
 
   packages/typescript-config: {}
 
-  services/face-swap-bff:
+  services/test-bff:
     dependencies:
       '@fastify/cors':
         specifier: ^11.0.1

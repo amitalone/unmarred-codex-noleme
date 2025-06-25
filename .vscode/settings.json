@@ -1,4 +1,23 @@
 {
+  "material-icon-theme.folders.associations": {
+    "base-ui": "react-components",
+    "components": "react-components",
+    "design-system": "sandbox",
+    "eslint-config": "Circleci",
+    "jest-config": "Circleci",
+    "tailwind-config": "Circleci",
+    "typescript-config": "Circleci",
+    "stryker-config": "Circleci",
+    "shared-interfaces": "include",
+    "service-utils": "node",
+    "tools": "tools",
+    "templates": "template",
+    "face-swap-ui": "ui",
+    "node_modules": "less",
+    "face-swap-app": "store",
+    "next-tailwind-template": "store",
+    "test-bff": "server"
+  },
   "eslint.workingDirectories": [
     {
       "mode": "auto"
