@@ -14,12 +14,14 @@ export interface imageGalleryPageProps {
   images: BaseImage[];
   title?: string;
   className?: string;
+  children?: ReactNode; // Added to support loader component
 }
 
 export function ImageGalleryPagePage({
   images,
   title,
   className = "",
+  children,
 }: imageGalleryPageProps) {
   const faceImageActionButtonList: ReactNode[] = [
     SelectButton,
@@ -35,6 +37,8 @@ export function ImageGalleryPagePage({
           images={images}
           actionButtonList={faceImageActionButtonList}
         />
+        {/* Render loader at the bottom */}
+        {children && <div className="mt-4">{children}</div>}
       </FixedHeightContainer>
     </FaceSwapAppPage>
   );

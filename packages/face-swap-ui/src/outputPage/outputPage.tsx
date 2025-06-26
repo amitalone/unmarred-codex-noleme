@@ -15,12 +15,14 @@ export interface OutputPageProps {
   images: BaseImage[];
   title?: string;
   className?: string;
+  children?: ReactNode; // Added to support loader component
 }
 
 export function OutputPage({
   images,
   title = "Output",
   className = "",
+  children,
 }: OutputPageProps) {
   // Create default action buttons
   const outputImageActionButtonList: ReactNode[] = [
@@ -57,6 +59,8 @@ export function OutputPage({
           images={images}
           actionButtonList={outputImageActionButtonList}
         />
+        {/* Render loader at the bottom */}
+        {children && <div className="mt-4">{children}</div>}
       </FixedHeightContainer>
     </FaceSwapAppPage>
   );

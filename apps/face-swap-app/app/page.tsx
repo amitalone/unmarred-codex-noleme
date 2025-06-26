@@ -1,31 +1,35 @@
 "use client";
 import { OutputPage } from "@repo/face-swap-ui/outputPage";
-import { useState, useEffect } from "react";
 import { resultsByPathURL } from "./FaceSwapBFFClient";
 import { type OutputImage } from "@repo/shared-interfaces";
+import { useInfiniteData, LoadMoreTrigger } from "@repo/base-ui";
 
-export default function Page() {
-  const [resultImages, setResultImages] = useState<OutputImage[]>([]);
+export default function ResultsPage() {
+  const {
+    data: resultImages,
+    isLoading,
+    hasMore,
+    loadNextPage,
+  } = useInfiniteData<OutputImage, [string, string]>(
+    resultsByPathURL,
+    "2025", // Base year parameter
+    (page) => ["2025", page.toString()] // How to construct params with page number
+  );
 
-  useEffect(() => {
-    const fetchResults = async () => {
-      try {
-        const data = await resultsByPathURL("2025", "1");
-        setResultImages(data as OutputImage[]);
-      } catch (error) {
-        console.error("Error fetching results:", error);
-      }
-    };
-
-    fetchResults();
-  }, []);
+  // Debug log whenever result images change
+  console.log(
+    `Rendering with ${resultImages?.length || 0} images, loading: ${isLoading}, hasMore: ${hasMore}`
+  );
 
   return (
     <>
-      <OutputPage
-        images={resultImages.length > 0 ? resultImages : []}
-        title="Results Gallery"
-      />
+      <OutputPage images={resultImages || []} title="Results Gallery">
+        <LoadMoreTrigger
+          onIntersect={loadNextPage}
+          isLoading={isLoading}
+          hasMore={hasMore}
+        />
+      </OutputPage>
     </>
   );
 }

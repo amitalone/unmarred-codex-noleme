@@ -1,31 +1,35 @@
 "use client";
 import { ImageGalleryPagePage } from "@repo/face-swap-ui/imageGalleryPage";
-import { useState, useEffect } from "react";
 import { getModels } from "../FaceSwapBFFClient";
 import { type ModelImage } from "@repo/shared-interfaces";
+import { useInfiniteData, LoadMoreTrigger } from "@repo/base-ui";
 
-export default function Page() {
-  const [modelImages, setModelImages] = useState<ModelImage[]>([]);
+export default function ModelsPage() {
+  const {
+    data: modelImages,
+    isLoading,
+    hasMore,
+    loadNextPage,
+  } = useInfiniteData<ModelImage, [string]>(
+    getModels,
+    "1", // Base page parameter
+    (page) => [page.toString()] // How to construct params with page number
+  );
 
-  useEffect(() => {
-    const fetchModels = async () => {
-      try {
-        const data = await getModels("1");
-        setModelImages(data as ModelImage[]);
-      } catch (error) {
-        console.error("Error fetching models:", error);
-      }
-    };
-
-    fetchModels();
-  }, []);
+  // Debug log whenever model images change
+  console.log(
+    `Rendering with ${modelImages?.length || 0} models, loading: ${isLoading}, hasMore: ${hasMore}`
+  );
 
   return (
     <>
-      <ImageGalleryPagePage
-        images={modelImages.length > 0 ? modelImages : []}
-        title="models Gallery"
-      />
+      <ImageGalleryPagePage images={modelImages || []} title="Models Gallery">
+        <LoadMoreTrigger
+          onIntersect={loadNextPage}
+          isLoading={isLoading}
+          hasMore={hasMore}
+        />
+      </ImageGalleryPagePage>
     </>
   );
 }
