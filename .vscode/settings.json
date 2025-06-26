@@ -16,7 +16,8 @@
     "node_modules": "less",
     "face-swap-app": "store",
     "next-tailwind-template": "store",
-    "test-bff": "server"
+    "test-bff": "server",
+    "face-swap-bff": "server"
   },
   "eslint.workingDirectories": [
     {

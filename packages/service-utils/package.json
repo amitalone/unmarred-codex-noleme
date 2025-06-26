@@ -22,6 +22,7 @@
     "mutation:report": "open reports/mutation/html/index.html"
   },
   "devDependencies": {
+    "@repo/shared-interfaces": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/jest-config": "workspace:*",
     "@repo/stryker-config": "workspace:*",

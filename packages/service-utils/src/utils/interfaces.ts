@@ -39,15 +39,7 @@ export interface TreeViewItem {
   children?: TreeViewItem[];
 }
 
-export interface ScannedFile {
-  filename: string;
-  relativePath: string;
-  scanType: string;
-  faceName: string | null;
-  modelName: string | null;
-  created: Date;
-  createdFmt: string;
-}
+
 
 export interface FilterOptions {
   filterType: string;
