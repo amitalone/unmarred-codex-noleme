@@ -4,7 +4,7 @@ import { ImageButton } from "@repo/base-ui/imageButton";
 import { ButtonNames, buttonActionHandler } from "./outputPage.event.handler";
 import { IconButton } from "@repo/base-ui/iconButton";
 import { IconDelete, IconBookmark } from "@repo/design-system/icons";
-
+import { Popover } from "@repo/design-system/popover";
 export const FaceButton = ({ payload }: { payload?: OutputImage }) => {
   const [src, setSrc] = useState<string>("");
 

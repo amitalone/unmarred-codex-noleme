@@ -4,4 +4,5 @@ export * from "./drawer/drawer";
 export * from "./icons/icons";
 export * from "./sidebar";
 export * from "./avatar";
+export * from "./popover";
 // ...add other exports as needed...

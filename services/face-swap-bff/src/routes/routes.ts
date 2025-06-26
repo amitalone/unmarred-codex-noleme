@@ -15,13 +15,13 @@ export async function routes(fastify: FastifyInstance, options: object): Promise
     return FaceSwapBFFHelper.getResultFacets(LOCAL_IMAGE_FOLDER_BASE + "/output");
   });
 
-   fastify.get(FACE_SWAP_BFF_ROUTES.resultFacetsByPath, async (
+   fastify.get(FACE_SWAP_BFF_ROUTES.resultByFacetValue, async (
     request: FastifyRequest,
     reply: FastifyReply
   ) => {
     const { path, pageNumber } = request.params;
     const folderPath = path.replaceAll("-", "/");
-    return FaceSwapBFFHelper.getResultFacetsByPath(LOCAL_IMAGE_FOLDER_BASE, `/output/${folderPath}`, pageNumber, pageSize );
+    return FaceSwapBFFHelper.getResultByFacetValue(LOCAL_IMAGE_FOLDER_BASE, `/output/${folderPath}`, pageNumber, pageSize );
   });
 
   fastify.get(FACE_SWAP_BFF_ROUTES.faces, async (

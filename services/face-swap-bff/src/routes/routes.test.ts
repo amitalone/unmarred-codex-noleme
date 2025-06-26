@@ -3,13 +3,6 @@ import { FACE_SWAP_BFF_ROUTES } from '@repo/shared-interfaces';
 import FaceSwapBFFHelper from '@repo/service-utils/helpers/FaceSwapBFFHelper';
 import { routes } from './routes.js';
 
-// TypeScript type for jest
-declare const jest: any;
-declare const describe: any;
-declare const beforeEach: any;
-declare const it: any;
-declare const expect: any;
-
 // Mock the FaceSwapBFFHelper
 jest.mock('@repo/service-utils/helpers/FaceSwapBFFHelper', () => ({
   getResultFacets: jest.fn(),

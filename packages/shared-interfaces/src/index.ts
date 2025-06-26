@@ -1,7 +1,6 @@
 export const FACE_SWAP_BFF_ROUTES ={
-  test: "/test/:pageNumber",
   resultFacets: "/results/facets",
-  resultFacetsByPath: "/results/facet/:path/:pageNumber",
+  resultByFacetValue: "/results/facet/:path/:pageNumber",
   faces: "/faces/:pageNumber",
   models: "/models/:pageNumber",
 }

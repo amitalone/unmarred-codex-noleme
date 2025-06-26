@@ -8,6 +8,7 @@ type ImageButtonProps = {
   "data-testid"?: string;
   rounded?: boolean;
   payload?: any;
+  className?: string;
 };
 
 export function ImageButton({
@@ -17,6 +18,7 @@ export function ImageButton({
   "data-testid": testId,
   rounded = true,
   payload,
+  className,
   ...rest
 }: ImageButtonProps) {
   useEffect(() => {
@@ -25,7 +27,7 @@ export function ImageButton({
 
   return (
     <div
-      className="cursor-pointer hover:opacity-80 transition-opacity duration-200 ease-in-out"
+      className={`${className} cursor-pointer hover:opacity-80 transition-opacity duration-200 ease-in-out`}
       onClick={(e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
@@ -42,7 +44,7 @@ export function ImageButton({
       }}
       data-testid={testId}
     >
-      <Avatar img={src} alt={alt} size="sm" rounded={rounded} />
+      <Avatar img={src} alt={alt} size="md" rounded={rounded} />
     </div>
   );
 }
