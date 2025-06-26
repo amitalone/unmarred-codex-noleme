@@ -15,11 +15,7 @@
     "build": "pnpm build:lib",
     "check-types": "tsc --noEmit",
     "dev:lib": "tsc --watch",
-    "lint": "eslint src --max-warnings 0",
-    "test": "jest --runInBand --detectOpenHandles --forceExit",
-    "test:watch": "jest --watch",
-    "mutation": "stryker run",
-    "mutation:report": "open reports/mutation/html/index.html"
+    "lint": "eslint src --max-warnings 0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
