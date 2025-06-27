@@ -9,7 +9,7 @@ import {
   IconFaceRetouchingNatural,
 } from "@repo/design-system/icons";
 const geist = Geist({ subsets: ["latin"] });
-
+import { SelectedImagesProvider } from "@repo/face-swap-ui/selectedImagesContext";
 const sideBarLinks = [
   {
     href: "/",
@@ -39,9 +39,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={geist.className}>
-        <FaceSwapAppLayout sideBarLinks={sideBarLinks}>
-          {children}
-        </FaceSwapAppLayout>
+        <SelectedImagesProvider>
+          <FaceSwapAppLayout sideBarLinks={sideBarLinks}>
+            {children}
+          </FaceSwapAppLayout>
+        </SelectedImagesProvider>
       </body>
     </html>
   );

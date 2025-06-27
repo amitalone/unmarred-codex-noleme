@@ -1,12 +1,7 @@
-import { type ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import { FixedHeightContainer } from "@repo/base-ui/fixedHeightContainer";
 import { FaceSwapAppPage } from "../faceSwapAppPage";
-import {
-  SelectButton,
-  DeleteButton,
-  BookmarkButton,
-  ResultsButton,
-} from "./imageGalleryPageActionButtons";
+import { ImageGalleryPageActionButtons } from "./imageGalleryPageActionButtons";
 import { ImageGridWithFullScreen } from "@repo/base-ui/imageGridWithFullScreen";
 import { BaseImage } from "@repo/shared-interfaces";
 
@@ -23,6 +18,10 @@ export function ImageGalleryPagePage({
   className = "",
   children,
 }: imageGalleryPageProps) {
+  // Get the action buttons from our component
+  const { SelectButton, ResultsButton, DeleteButton, BookmarkButton } =
+    ImageGalleryPageActionButtons();
+
   const faceImageActionButtonList: ReactNode[] = [
     SelectButton,
     ResultsButton,

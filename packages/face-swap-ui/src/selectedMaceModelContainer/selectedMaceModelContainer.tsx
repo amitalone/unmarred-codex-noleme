@@ -2,7 +2,7 @@
 import { type ReactNode, useState } from "react";
 import { Drawer } from "@repo/design-system/drawer";
 import { IconButton } from "@repo/base-ui/iconButton";
-import { IconImages } from "@repo/design-system/icons";
+import { IconImages, IconUpload, IconClose } from "@repo/design-system/icons";
 import {
   FaceImage as FaceImageType,
   ModelImage as ModelImageType,
@@ -16,6 +16,8 @@ interface SelectedMaceModelContainerProps {
   position?: "left" | "right";
   title?: string;
   onClearSelection?: () => void;
+  onRemoveFace?: (faceName: string) => void;
+  onRemoveModel?: (modelName: string) => void;
 }
 
 export function SelectedMaceModelContainer({
@@ -25,6 +27,8 @@ export function SelectedMaceModelContainer({
   position = "right",
   title = "Selected Images",
   onClearSelection,
+  onRemoveFace,
+  onRemoveModel,
 }: SelectedMaceModelContainerProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -92,10 +96,17 @@ export function SelectedMaceModelContainer({
                       className="selected-mace-model-container__image-item"
                       data-testid="selected-face-image-item"
                     >
-                      <FaceImage src={face.src} alt={face.alt || face.name} />
-                      {/* <div className="selected-mace-model-container__image-name">
-                        {face.name}
-                      </div> */}
+                      <div className="selected-mace-model-container__image-wrapper">
+                        <FaceImage src={face.src} alt={face.alt || face.name} />
+                        <button
+                          className="selected-mace-model-container__remove-button"
+                          onClick={() => onRemoveFace?.(face.name)}
+                          data-testid={`remove-face-button-${face.name}`}
+                          aria-label={`Remove ${face.name}`}
+                        >
+                          <IconClose size={16} />
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -114,32 +125,48 @@ export function SelectedMaceModelContainer({
                       className="selected-mace-model-container__image-item"
                       data-testid="selected-model-image-item"
                     >
-                      <ModelImage
-                        src={model.src}
-                        alt={model.alt || model.name}
-                      />
-                      {/* <div className="selected-mace-model-container__image-name">
-                        {model.name}
-                      </div> */}
+                      <div className="selected-mace-model-container__image-wrapper">
+                        <ModelImage
+                          src={model.src}
+                          alt={model.alt || model.name}
+                        />
+                        <button
+                          className="selected-mace-model-container__remove-button"
+                          onClick={() => onRemoveModel?.(model.name)}
+                          data-testid={`remove-model-button-${model.name}`}
+                          aria-label={`Remove ${model.name}`}
+                        >
+                          <IconClose size={16} />
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
             )}
-          </div>
-
-          {hasSelectedItems && onClearSelection && (
+          </div>{" "}
+          {hasSelectedItems && (
             <div className="selected-mace-model-container__actions">
-              <button
-                className="selected-mace-model-container__clear-button"
-                onClick={onClearSelection}
-                data-testid="selected-mace-model-clear-button"
-              >
-                Clear Selection
-              </button>
+              {onClearSelection && (
+                <button
+                  className="selected-mace-model-container__clear-button"
+                  onClick={onClearSelection}
+                  data-testid="selected-mace-model-clear-button"
+                >
+                  Clear Selection
+                </button>
+              )}
+
+              <IconButton
+                reactIcon={IconUpload}
+                onClick={() => {}}
+                textColor="primary"
+                shadowClass="shadow-md"
+                size={40}
+                data-testid="selected-mace-model-upload-button"
+              />
             </div>
           )}
-
           {!hasSelectedItems && (
             <div className="selected-mace-model-container__empty-state">
               <p>No images selected.</p>

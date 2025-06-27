@@ -90,6 +90,7 @@
 }
 
 .selected-mace-model-container__image-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -102,6 +103,12 @@
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
+}
+
+.selected-mace-model-container__image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .selected-mace-model-container__image-name {
@@ -147,6 +154,34 @@
 
 .selected-mace-model-container__empty-state p {
   margin: 0.5rem 0;
+}
+
+/* Remove button styles */
+.selected-mace-model-container__remove-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 10;
+}
+
+.selected-mace-model-container__image-item:hover .selected-mace-model-container__remove-button {
+  opacity: 1;
+}
+
+.selected-mace-model-container__remove-button:hover {
+  background-color: rgba(239, 68, 68, 0.8); /* Red color when hovering */
 }
 
 /* Responsive styles for smaller screens */

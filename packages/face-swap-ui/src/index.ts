@@ -4,3 +4,4 @@ export * from "./outputPage";
 export * from "./faceSwapAppPage";
 export * from "./imageGalleryPage";
 export * from "./selectedMaceModelContainer";
+export * from "./selectedImagesContext";
