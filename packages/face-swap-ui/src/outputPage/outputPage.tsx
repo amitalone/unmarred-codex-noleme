@@ -1,7 +1,6 @@
 import { type ReactNode } from "react";
 import { FixedHeightContainer } from "@repo/base-ui/fixedHeightContainer";
-import { MasonryImageGrid } from "@repo/base-ui/masonryImageGrid";
-import { type BaseImage } from "@repo/base-ui/types";
+import { ImageGridWithFullScreen } from "@repo/base-ui/imageGridWithFullScreen";
 import { FaceSwapAppPage } from "../faceSwapAppPage";
 import { Popover } from "@repo/design-system/popover";
 import {
@@ -10,6 +9,7 @@ import {
   DeleteButton,
   BookmarkButton,
 } from "./outputActionButtions";
+import { BaseImage } from "@repo/shared-interfaces";
 
 export interface OutputPageProps {
   images: BaseImage[];
@@ -55,10 +55,12 @@ export function OutputPage({
             Italy
           </a>
         </Popover>
-        <MasonryImageGrid
+
+        <ImageGridWithFullScreen
           images={images}
           actionButtonList={outputImageActionButtonList}
         />
+
         {/* Render loader at the bottom */}
         {children && <div className="mt-4">{children}</div>}
       </FixedHeightContainer>

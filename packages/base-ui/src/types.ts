@@ -1,10 +1,6 @@
-export interface BaseImage {
-  src: string;
-  alt?: string;
-  width?: number;
-  height?: number;
-}
+import { BaseImage } from "@repo/shared-interfaces";
 
+ 
 export interface MasonryImageGridProps {
   /**
    * List of image objects to display in the grid
@@ -39,9 +35,28 @@ export interface MasonryImageGridProps {
    * Additional CSS class name
    */
   className?: string;
+  
   /**
    * Optional list of action buttons to render in the ImageActionBar
    * If not provided, the default delete button will be rendered
    */
   actionButtonList?: React.ReactNode[];
+  
+  /**
+   * Callback function that is called when user scrolls to the top or bottom of the grid
+   * @param direction 'up' or 'down' indicating the scroll direction
+   */
+  onScrollEnd?: (direction: 'up' | 'down') => void;
+  
+  /**
+   * Flag to indicate if more images are being loaded
+   * @default false
+   */
+  isLoading?: boolean;
+  
+  /**
+   * Callback function that is called when an image is clicked
+   * @param index The index of the clicked image
+   */
+  onImageClick?: (index: number) => void;
 }

@@ -9,7 +9,12 @@ import { TbHttpDelete } from "react-icons/tb";
 import { FaRegBookmark } from "react-icons/fa6";
 import { RiSwap2Line } from "react-icons/ri";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
+import { HiChevronLeft, HiChevronRight, HiPlay, HiPause } from "react-icons/hi";
 
+export const IconChevronLeft = HiChevronLeft;
+export const IconChevronRight = HiChevronRight;
+export const IconPlay = HiPlay;
+export const IconPause = HiPause;
 export const IconSelect = IoCheckmarkDoneSharp;
 export const IconSwapOutput = RiSwap2Line;
 export const IconSwap = RiSwap2Line;

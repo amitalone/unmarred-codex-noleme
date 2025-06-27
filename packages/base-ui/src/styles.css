@@ -11,3 +11,5 @@
 @import "./sideBarLayout/sideBarLayout.css";
 @import "./masonryImageGrid/masonryImageGrid.css";
 @import "./imageActionBar/imageActionBar.css";
+@import "./fullScreenImageViewer/fullscreenImageViewer.css";
+@import "./imageGridWithFullScreen/imageGridWithFullScreen.css";

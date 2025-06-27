@@ -8,7 +8,7 @@
 }
 
 .sidebar-layout__right-content {
-  @apply flex justify-center items-center font-medium p-4;
+  @apply flex justify-center items-center font-medium p-0 w-0.5;
 }
 
 /* Sidebar layout drawer styles */

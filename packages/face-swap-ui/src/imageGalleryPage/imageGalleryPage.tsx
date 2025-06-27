@@ -1,7 +1,5 @@
 import { type ReactNode } from "react";
 import { FixedHeightContainer } from "@repo/base-ui/fixedHeightContainer";
-import { MasonryImageGrid } from "@repo/base-ui/masonryImageGrid";
-import { type BaseImage } from "@repo/base-ui/types";
 import { FaceSwapAppPage } from "../faceSwapAppPage";
 import {
   SelectButton,
@@ -9,6 +7,8 @@ import {
   BookmarkButton,
   ResultsButton,
 } from "./imageGalleryPageActionButtons";
+import { ImageGridWithFullScreen } from "@repo/base-ui/imageGridWithFullScreen";
+import { BaseImage } from "@repo/shared-interfaces";
 
 export interface imageGalleryPageProps {
   images: BaseImage[];
@@ -33,7 +33,7 @@ export function ImageGalleryPagePage({
   return (
     <FaceSwapAppPage title={title || ""} className={className}>
       <FixedHeightContainer height="85vh">
-        <MasonryImageGrid
+        <ImageGridWithFullScreen
           images={images}
           actionButtonList={faceImageActionButtonList}
         />

@@ -1,0 +1,40 @@
+/* FullscreenImageViewer component styles */
+.fullscreen-image-viewer {
+  @apply fixed inset-0 z-50;
+}
+
+.fullscreen-image-viewer__overlay {
+  @apply fixed inset-0 bg-black flex items-center justify-center;
+}
+
+.fullscreen-image-viewer__content {
+  @apply relative flex items-center justify-center w-full h-full;
+}
+
+.fullscreen-image-viewer__image-container {
+  @apply max-w-full max-h-full flex items-center justify-center;
+}
+
+.fullscreen-image-viewer__image {
+  @apply max-w-full max-h-screen object-contain;
+}
+
+.fullscreen-image-viewer__nav-button {
+  @apply absolute flex items-center justify-center w-12 h-12 rounded-full bg-black  text-white opacity-60 hover:opacity-100 transition-opacity duration-200 z-10;
+}
+
+.fullscreen-image-viewer__nav-button--left {
+  @apply left-4;
+}
+
+.fullscreen-image-viewer__nav-button--right {
+  @apply right-4;
+}
+
+.fullscreen-image-viewer__nav-icon {
+  @apply w-8 h-8;
+}
+
+.fullscreen-image-viewer__close-button {
+  @apply absolute top-4 right-4 z-20;
+}

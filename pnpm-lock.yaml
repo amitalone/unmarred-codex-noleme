@@ -294,6 +294,9 @@ importers:
       '@repo/jest-config':
         specifier: workspace:*
         version: link:../jest-config
+      '@repo/shared-interfaces':
+        specifier: workspace:*
+        version: link:../shared-interfaces
       '@repo/stryker-config':
         specifier: workspace:*
         version: link:../stryker-config
@@ -478,6 +481,9 @@ importers:
       '@repo/jest-config':
         specifier: workspace:*
         version: link:../jest-config
+      '@repo/shared-interfaces':
+        specifier: workspace:*
+        version: link:../shared-interfaces
       '@repo/stryker-config':
         specifier: workspace:*
         version: link:../stryker-config

@@ -34,6 +34,7 @@
     "react-dom": "^19"
   },
   "devDependencies": {
+    "@repo/shared-interfaces": "workspace:*",
     "@repo/base-ui": "workspace:*",
     "@repo/design-system": "workspace:*",
     "@repo/eslint-config": "workspace:*",

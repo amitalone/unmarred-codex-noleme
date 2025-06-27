@@ -4,7 +4,7 @@ import { TransformerUtil } from "../utils/";
 
 const LOCAL_LOCAL_FS_PATH = "C:/workspace/face-swap-fs/";
 const LOCAL_UPLOAD_IMAGE_FOLDER_BASE = LOCAL_LOCAL_FS_PATH;
-const DAM_URL = "http://localhost:8000";
+const DAM_URL = "http://192.168.50.38:8000";
 const RELATIVE_FACES_PATH = "/faces/";
 const RELATIVE_MODEL_PATH = "/model/";
 const  RELATIVE_OUTPUT_PATH =  "output/";

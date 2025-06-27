@@ -16,6 +16,7 @@ import {
   IconMenu,
 } from "@repo/design-system/icons";
 import { Children } from "react";
+import { FullscreenImageViewer } from "../fullScreenImageViewer";
 
 export function MasonryImageGrid({
   images,
@@ -25,6 +26,9 @@ export function MasonryImageGrid({
   rowGap = 10,
   className = "",
   actionButtonList,
+  onScrollEnd,
+  isLoading = false,
+  onImageClick,
 }: MasonryImageGridProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
@@ -34,6 +38,9 @@ export function MasonryImageGrid({
   const [gridHeight, setGridHeight] = useState(0);
   const imageRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const columnHeightsRef = useRef<number[]>([]);
+  const lastScrollY = useRef<number>(0);
+  const scrollThreshold = 200; // pixels from bottom to trigger load more
+  const scrollTimer = useRef<number | null>(null);
 
   // Calculate how many columns to display based on container width
   const calculateColumnCount = useCallback(() => {
@@ -140,6 +147,49 @@ export function MasonryImageGrid({
     []
   );
 
+  // Handle scroll events
+  const handleScroll = useCallback(() => {
+    if (!onScrollEnd || isLoading) return;
+
+    const scrollY = window.scrollY;
+    const direction = scrollY > lastScrollY.current ? "down" : "up";
+    lastScrollY.current = scrollY;
+
+    // Clear existing timer
+    if (scrollTimer.current !== null) {
+      window.clearTimeout(scrollTimer.current);
+    }
+
+    // Set a new timer to detect when scrolling stops
+    scrollTimer.current = window.setTimeout(() => {
+      // Check if we're near the bottom of the page
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrolledToBottom =
+        scrollY + windowHeight >= documentHeight - scrollThreshold;
+
+      // Check if we're near the top of the page
+      const scrolledToTop = scrollY < scrollThreshold;
+
+      if (
+        (direction === "down" && scrolledToBottom) ||
+        (direction === "up" && scrolledToTop)
+      ) {
+        onScrollEnd(direction);
+      }
+    }, 200); // Debounce for 200ms
+  }, [onScrollEnd, isLoading]);
+
+  // Add scroll event listener
+  useEffect(() => {
+    if (onScrollEnd) {
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [handleScroll, onScrollEnd]);
+
   return (
     <div
       ref={containerRef}
@@ -176,6 +226,8 @@ export function MasonryImageGrid({
                 alt={image.alt || `Image ${index + 1}`}
                 className="masonry-image-grid__image"
                 loading="lazy"
+                onClick={() => onImageClick && onImageClick(index)}
+                style={{ cursor: "pointer" }}
               />
               {actionButtonList && actionButtonList.length > 0 ? (
                 <div className="masonry-image-grid__action-bar">
@@ -206,6 +258,11 @@ export function MasonryImageGrid({
           </div>
         ))}
       </div>
+      {isLoading && (
+        <div className="masonry-image-grid__loading-indicator flex justify-center py-4">
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+        </div>
+      )}
     </div>
   );
 }

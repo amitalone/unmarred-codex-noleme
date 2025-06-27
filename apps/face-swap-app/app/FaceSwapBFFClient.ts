@@ -1,4 +1,4 @@
- const UI_BFF_BASE_URL = "http://localhost:4001/api"
+ const UI_BFF_BASE_URL = "http://192.168.50.38:4001/api"
 
 import {FACE_SWAP_BFF_ROUTES} from "@repo/shared-interfaces";
 import {ApiClient} from "@repo/base-ui";
