@@ -34,6 +34,19 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.selected-mace-model-container__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.selected-mace-model-container__loading p {
+  margin: 0;
+}
+
 .selected-mace-model-container__badge--faces {
   background-color: #ec4899; /* Pink color for faces */
   transform: translateX(-50%);

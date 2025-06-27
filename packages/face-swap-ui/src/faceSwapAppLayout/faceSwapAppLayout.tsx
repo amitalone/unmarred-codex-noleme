@@ -7,9 +7,13 @@ import {
   FaceSwapSidebar,
   type SideBarLink,
 } from "../faceSwapSidebar/faceSwapSidebar";
-import { FaceImage, ModelImage } from "@repo/shared-interfaces";
+import {
+  FaceImage as FaceImageType,
+  ModelImage as ModelImageType,
+  OutputImage,
+} from "@repo/shared-interfaces";
 
-const mockFaceImages: FaceImage[] = [
+const mockFaceImages: FaceImageType[] = [
   // Images for face page
   {
     src: "https://dummyimage.com/900x700/FF338C/fff&text=Fashion",
@@ -36,7 +40,7 @@ const mockFaceImages: FaceImage[] = [
     name: "people1.jpg",
   },
 ];
-const mockModelImages: ModelImage[] = [
+const mockModelImages: ModelImageType[] = [
   // Images for model page
   {
     src: "https://dummyimage.com/900x700/FF338C/fff&text=Fashion",
@@ -68,10 +72,12 @@ export function FaceSwapAppLayout({
   children,
   className = "",
   sideBarLinks = [],
+  onImageAdded,
 }: {
   children: ReactNode;
   className?: string;
   sideBarLinks?: SideBarLink[];
+  onImageAdded?: (faces: string[], models: string[]) => Promise<OutputImage[]>;
 }) {
   return (
     <div
@@ -84,7 +90,7 @@ export function FaceSwapAppLayout({
       >
         <div className="face-swap-app-layout__content">{children}</div>
       </SideBarLayout>
-      <SelectedMaceModelContainer />
+      <SelectedMaceModelContainer onImageAdded={onImageAdded} />
     </div>
   );
 }

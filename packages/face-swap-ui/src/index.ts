@@ -5,3 +5,4 @@ export * from "./faceSwapAppPage";
 export * from "./imageGalleryPage";
 export * from "./selectedMageModelContainer";
 export * from "./selectedImagesContext";
+export * from "./combinationHighlighter";
