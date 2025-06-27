@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { SelectedMaceModelContainer } from "./selectedMaceModelContainer";
+import { SelectedMaceModelContainer } from "./selectedMageModelContainer";
 import "@testing-library/jest-dom";
 import { FaceImage, ModelImage } from "@repo/shared-interfaces";
 

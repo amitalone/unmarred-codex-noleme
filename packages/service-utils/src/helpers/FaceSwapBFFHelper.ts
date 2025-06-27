@@ -10,6 +10,42 @@ const RELATIVE_MODEL_PATH = "/model/";
 const  RELATIVE_OUTPUT_PATH =  "output/";
 
 
+const toResultImages = (files:ScannedFile[]):OutputImage[] => {
+
+    return files.map((file) => {
+        const { face, model } = getFaceModelByResultName(file.name);
+        return {
+            src: DAM_URL + file.path,
+            alt: "Output Image",
+            created: file.created.toISOString(),
+            createdfmt: TransformerUtil.formatDateToCustomFormat(file.created),
+            name: file.name,
+            type: 'Output',
+            face: face,
+            model: model
+        } as OutputImage;
+    });
+}
+
+const checkFaceModelCombination= (
+  faceName: string,
+  modelName: string,
+  list: ScannedFile[]
+): OutputImage | null => {
+  if (!Array.isArray(list)) {
+    console.error("Expected list to be an array, but got:", list);
+    return null;
+  }
+  const results:OutputImage[] = toResultImages(list);
+  for (const resultImage of results) {
+    if (resultImage.face.name === faceName &&  resultImage.model.name === modelName) {
+        return resultImage 
+    }
+  }
+  return null;
+};
+
+
 const getFaceModelByResultName = (filename:string): { face: FaceImage, model: ModelImage } => {
    const parts = filename.split("--");
    let faceName = null;
@@ -97,3 +133,18 @@ export const getModels = (basePath:string,  pageNumber:number, pageSize:number) 
     const allFiles:ScannedFile[] = FileSystemUtil.scanFolderRecursive(basePath, RELATIVE_MODEL_PATH);
     return getModelsImages(allFiles, pageNumber, pageSize);
 }
+
+export const checkExistingFaceModelCombination = (
+  faces: string[],
+    models: string[]): OutputImage[] => {
+        const results: OutputImage[] = [];
+        for (const face of faces) {
+            for (const model of models) {
+                const result = checkFaceModelCombination(face, model, FileSystemUtil.scanFolderRecursive(LOCAL_LOCAL_FS_PATH, RELATIVE_OUTPUT_PATH));
+                if (result !== null) {
+                    results.push(result);
+                }
+            }
+        }
+        return results;
+    }

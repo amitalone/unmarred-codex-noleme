@@ -15,3 +15,14 @@ export const getFaces = async (pageNumber: string) => {
 export const getModels = async (pageNumber: string) => {
     return await ApiClient.get(`${UI_BFF_BASE_URL}${FACE_SWAP_BFF_ROUTES.models.replace(':pageNumber', pageNumber)}`);
 }
+
+export const validateCombination = async (faces: string[], models: string[]) => {
+    const payload = { faces, models };
+    return await ApiClient.post(`${UI_BFF_BASE_URL}${FACE_SWAP_BFF_ROUTES.validateCombination}`, payload);
+}
+
+export const submitImages = async (faces: string[], models: string[]) => {
+    const payload = { faces, models };
+    console.log("Submitting images with payload:", payload);
+    return await ApiClient.post(`${UI_BFF_BASE_URL}${FACE_SWAP_BFF_ROUTES.submitImages}`, payload);
+}

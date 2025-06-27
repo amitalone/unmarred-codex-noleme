@@ -2,11 +2,7 @@
 import { type ReactNode, useState } from "react";
 import { SideBarLayout } from "@repo/base-ui/sideBarLayout";
 import { Drawer } from "@repo/design-system/drawer";
-import { SelectedMaceModelContainer } from "../selectedMaceModelContainer/selectedMaceModelContainer";
-import {
-  SelectedImagesProvider,
-  useSelectedImages,
-} from "../selectedImagesContext/selectedImagesContext";
+import { SelectedMaceModelContainer } from "../selectedMageModelContainer/selectedMageModelContainer";
 import {
   FaceSwapSidebar,
   type SideBarLink,
@@ -77,14 +73,6 @@ export function FaceSwapAppLayout({
   className?: string;
   sideBarLinks?: SideBarLink[];
 }) {
-  const { faces, models, removeFace, removeModel } = useSelectedImages();
-
-  const handleClearSelection = () => {
-    // Clear all selected faces and models
-    faces.forEach((face) => removeFace(face.name));
-    models.forEach((model) => removeModel(model.name));
-  };
-
   return (
     <div
       className={`face-swap-app-layout ${className}`}
@@ -96,13 +84,7 @@ export function FaceSwapAppLayout({
       >
         <div className="face-swap-app-layout__content">{children}</div>
       </SideBarLayout>
-      <SelectedMaceModelContainer
-        selectedFaces={faces}
-        selectedModels={models}
-        onRemoveFace={removeFace}
-        onRemoveModel={removeModel}
-        onClearSelection={handleClearSelection}
-      />
+      <SelectedMaceModelContainer />
     </div>
   );
 }

@@ -3,6 +3,8 @@ export const FACE_SWAP_BFF_ROUTES ={
   resultByFacetValue: "/results/facet/:path/:pageNumber",
   faces: "/faces/:pageNumber",
   models: "/models/:pageNumber",
+  validateCombination: "/validate-combination",
+  submitImages: "/submit-images",
 }
 
 export interface BaseImage {

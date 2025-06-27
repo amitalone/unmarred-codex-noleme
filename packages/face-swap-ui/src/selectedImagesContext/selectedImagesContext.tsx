@@ -8,6 +8,10 @@ interface SelectedImagesContextType {
   addModel: (model: ModelImage) => void;
   removeFace: (faceName: string) => void;
   removeModel: (modelName: string) => void;
+  uploadSelection: () => Promise<void>;
+  isUploading: boolean;
+  uploadError: string | null;
+  clearAll: () => void;
 }
 
 const SelectedImagesContext = createContext<
@@ -16,13 +20,17 @@ const SelectedImagesContext = createContext<
 
 interface SelectedImagesProviderProps {
   children: ReactNode;
+  onUpload?: (faces: string[], models: string[]) => Promise<any>;
 }
 
 export const SelectedImagesProvider: React.FC<SelectedImagesProviderProps> = ({
   children,
+  onUpload,
 }) => {
   const [faces, setFaces] = useState<FaceImage[]>([]);
   const [models, setModels] = useState<ModelImage[]>([]);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
 
   const addFace = (face: FaceImage) => {
     setFaces((prevFaces) => {
@@ -54,6 +62,37 @@ export const SelectedImagesProvider: React.FC<SelectedImagesProviderProps> = ({
     );
   };
 
+  const clearAll = () => {
+    setFaces([]);
+    setModels([]);
+    setUploadError(null);
+  };
+
+  const uploadSelection = async () => {
+    if (!onUpload) {
+      throw new Error("Upload function not provided");
+    }
+
+    if (faces.length === 0 || models.length === 0) {
+      setUploadError("Please select at least one face and one model");
+      return;
+    }
+
+    setIsUploading(true);
+    setUploadError(null);
+
+    try {
+      const faceNames = faces.map((face) => face.name);
+      const modelNames = models.map((model) => model.name);
+
+      await onUpload(faceNames, modelNames);
+    } catch (error) {
+      setUploadError(error instanceof Error ? error.message : "Upload failed");
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
   return (
     <SelectedImagesContext.Provider
       value={{
@@ -63,6 +102,10 @@ export const SelectedImagesProvider: React.FC<SelectedImagesProviderProps> = ({
         addModel,
         removeFace,
         removeModel,
+        uploadSelection,
+        isUploading,
+        uploadError,
+        clearAll,
       }}
     >
       {children}

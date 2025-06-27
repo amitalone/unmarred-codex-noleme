@@ -10,6 +10,7 @@ import {
 } from "@repo/design-system/icons";
 const geist = Geist({ subsets: ["latin"] });
 import { SelectedImagesProvider } from "@repo/face-swap-ui/selectedImagesContext";
+import { submitImages } from "./FaceSwapBFFClient";
 const sideBarLinks = [
   {
     href: "/",
@@ -31,6 +32,10 @@ const sideBarLinks = [
   },
 ];
 
+const handleUpload = async (faces: string[], models: string[]) => {
+  return await submitImages(faces, models);
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -39,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={geist.className}>
-        <SelectedImagesProvider>
+        <SelectedImagesProvider onUpload={handleUpload}>
           <FaceSwapAppLayout sideBarLinks={sideBarLinks}>
             {children}
           </FaceSwapAppLayout>

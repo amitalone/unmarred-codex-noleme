@@ -39,6 +39,56 @@ export async function routes(fastify: FastifyInstance, options: object): Promise
     const { pageNumber } = request.params;
     return FaceSwapBFFHelper.getModels(LOCAL_IMAGE_FOLDER_BASE, pageNumber, pageSize);
   });
-}
 
+  fastify.post(FACE_SWAP_BFF_ROUTES.validateCombination, async (
+    request: FastifyRequest,
+    reply: FastifyReply
+  ) => {
+     const jobData = request.body;
+      if (!jobData || Object.keys(jobData).length === 0) {
+        reply.code(400); // Bad Request
+        return { error: "Request body cannot be empty." };
+      }
+  
+      fastify.log.info({ msg: "Received job data", data: jobData });
+      const { faces, models } = jobData;
+  
+      if (!Array.isArray(faces) || faces.length === 0) {
+        reply.code(400);
+        return { error: "Invalid or empty 'faces' array in request body." };
+      }
+      if (!Array.isArray(models) || models.length === 0) {
+        reply.code(400);
+        return { error: "Invalid or empty 'models' array in request body." };
+      }
+    return FaceSwapBFFHelper.checkExistingFaceModelCombination(faces, models);
+  });
+
+  fastify.post(FACE_SWAP_BFF_ROUTES.submitImages, async (
+    request: FastifyRequest,
+    reply: FastifyReply
+  ) => {
+     const jobData = request.body;
+      if (!jobData || Object.keys(jobData).length === 0) {
+        reply.code(400); // Bad Request
+        return { error: "Request body cannot be empty." };
+      }
+  
+      fastify.log.info({ msg: "Received job data", data: jobData });
+      const { faces, models } = jobData;
+  
+      if (!Array.isArray(faces) || faces.length === 0) {
+        reply.code(400);
+        return { error: "Invalid or empty 'faces' array in request body." };
+      }
+      if (!Array.isArray(models) || models.length === 0) {
+        reply.code(400);
+        return { error: "Invalid or empty 'models' array in request body." };
+      }
+    return FaceSwapBFFHelper.checkExistingFaceModelCombination(faces, models);
+  });
+  
+}
+ 
+ 
 export default routes;
