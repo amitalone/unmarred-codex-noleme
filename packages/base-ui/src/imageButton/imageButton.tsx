@@ -9,6 +9,7 @@ type ImageButtonProps = {
   rounded?: boolean;
   payload?: any;
   className?: string;
+  size?: "sm" | "md" | "lg";
 };
 
 export function ImageButton({
@@ -19,6 +20,7 @@ export function ImageButton({
   rounded = true,
   payload,
   className,
+  size = "md",
   ...rest
 }: ImageButtonProps) {
   useEffect(() => {
@@ -44,7 +46,29 @@ export function ImageButton({
       }}
       data-testid={testId}
     >
-      <Avatar img={src} alt={alt} size="md" rounded={rounded} />
+      <Avatar img={src} alt={alt} size={size} rounded={rounded} />
     </div>
+  );
+}
+
+export function FaceImage(props: Omit<ImageButtonProps, "rounded">) {
+  return (
+    <ImageButton
+      {...props}
+      rounded={true}
+      size="lg"
+      data-testid={props["data-testid"] || "face-image"}
+    />
+  );
+}
+
+export function ModelImage(props: Omit<ImageButtonProps, "rounded">) {
+  return (
+    <ImageButton
+      {...props}
+      rounded={false}
+      size="lg"
+      data-testid={props["data-testid"] || "model-image"}
+    />
   );
 }

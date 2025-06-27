@@ -8,3 +8,8 @@
  
 
 @import "./faceSwapAppLayout/faceSwapAppLayout.css";
+@import "./faceSwapAppPage/faceSwapAppPage.css";
+@import "./faceSwapSideBar/faceSwapSideBar.css";
+@import "./imageGalleryPage/imageGalleryPage.css";
+@import "./outputPage/outputPage.css";
+@import "./selectedMaceModelContainer/selectedMaceModelContainer.css";

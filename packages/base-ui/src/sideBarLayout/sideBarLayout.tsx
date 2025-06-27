@@ -49,7 +49,7 @@ export function SideBarLayout({
       <Drawer
         open={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
-        placement="left"
+        position="left"
         title="Face-Swap"
         className="face-swap-drawer"
       >
@@ -58,7 +58,7 @@ export function SideBarLayout({
       <BaseLayout
         leftColumn={leftContent}
         middleColumn={children}
-        rightColumn={rightContent}
+        // rightColumn={rightContent}
         className={`sidebar-layout ${className}`}
         data-testid="sidebar-layout"
       />

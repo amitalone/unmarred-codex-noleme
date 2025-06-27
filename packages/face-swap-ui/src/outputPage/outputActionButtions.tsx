@@ -45,6 +45,7 @@ export const ModelButton = ({ payload }: { payload?: OutputImage }) => {
       alt="Model image"
       data-testid="model-image-button"
       payload={payload}
+      rounded={false}
       onClick={(e: React.MouseEvent<Element>, props) => {
         const outputImage = props?.payload as OutputImage;
         buttonActionHandler(ButtonNames.MODEL_IMAGE, outputImage);

@@ -9,7 +9,7 @@ import { ReactNode } from "react";
 export interface DrawerProps {
   open: boolean;
   onClose: () => void;
-  placement?: "left" | "right" | "top" | "bottom";
+  position?: "left" | "right" | "top" | "bottom";
   title?: string;
   children: ReactNode;
   className?: string;
@@ -18,13 +18,18 @@ export interface DrawerProps {
 export function Drawer({
   open,
   onClose,
-  placement = "right",
+  position,
   title,
   children,
   className,
 }: DrawerProps) {
   return (
-    <FlowDrawer open={open} onClose={onClose}>
+    <FlowDrawer
+      open={open}
+      onClose={onClose}
+      position={position}
+      className={className}
+    >
       {title && <DrawerHeader title={title} />}
       <DrawerItems>{children}</DrawerItems>
     </FlowDrawer>
