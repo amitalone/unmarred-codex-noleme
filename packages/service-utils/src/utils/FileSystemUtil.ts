@@ -4,6 +4,7 @@ import * as os from "os";
 //import sharp from "sharp";
 
 import { ScannedFile } from "@repo/shared-interfaces";
+import { createFileSystemCacheManager } from "../cache";
  
 import {
   FileMetadata,
@@ -25,6 +26,13 @@ import {
 // const IMPORT_FILE_PATH = "imported-files/";
 
 const SFW_MODE = false;
+
+// Initialize cache manager for file system operations
+const cacheManager = createFileSystemCacheManager({
+  watchPaths: [], // Will be populated dynamically
+  ttl: 300, // 5 minutes
+  debug: process.env.NODE_ENV === 'development'
+});
 
 
 
@@ -83,10 +91,10 @@ export function getFolderStructure(basePath: string): FolderStructure[] {
 
 export const sortFilesByDate = (files: ScannedFile[]): ScannedFile[] => {
   return files.sort((a, b) => new Date(b.created).getTime() - new Date(a.created).getTime());
-
 };
 
-export const scanFolderRecursive = (basePath: string, subPath: string): ScannedFile[]  => {
+// Original uncached function
+const scanFolderRecursiveUncached = (basePath: string, subPath: string): ScannedFile[]  => {
   const currentPath = path.join(basePath, subPath);
   let results: ScannedFile[] = [];
   try {
@@ -113,7 +121,7 @@ export const scanFolderRecursive = (basePath: string, subPath: string): ScannedF
         }
       } else if (stats.isDirectory()) {
         results = results.concat(
-          scanFolderRecursive(basePath, itemSubPath)
+          scanFolderRecursiveUncached(basePath, itemSubPath)
         );
       }
     }
@@ -121,9 +129,44 @@ export const scanFolderRecursive = (basePath: string, subPath: string): ScannedF
     console.error(`Error scanning folder ${currentPath}:`, (error as Error).message);
   }
   return results;
+};
 
-}
- 
- 
+// Cached version of scanFolderRecursive
+export const scanFolderRecursive = cacheManager.cacheable({
+  keyGenerator: (basePath: string, subPath: string) => `scan:${path.normalize(basePath)}:${path.normalize(subPath)}`,
+  strategy: 'hybrid',
+  ttl: 300, // 5 minutes fallback TTL
+  strategyOptions: {
+    watchPaths: [], // Will be populated dynamically by the file watcher strategy
+    watchExtensions: ['.png', '.jpg', '.jpeg'],
+    recursive: true,
+    ttl: 300
+  }
+})(scanFolderRecursiveUncached);
 
- 
+/**
+ * Add a path to be watched by the cache manager
+ * Call this when you start scanning a new base path
+ */
+export const addWatchPath = (basePath: string): void => {
+  // Get the hybrid strategy and add the watch path
+  const hybridStrategy = (cacheManager as any).strategies.get('hybrid');
+  if (hybridStrategy) {
+    const fileWatcherStrategy = hybridStrategy.getPrimaryStrategy();
+    if (fileWatcherStrategy && !fileWatcherStrategy.watchedPaths?.has(basePath)) {
+      // Initialize watching for this path
+      fileWatcherStrategy.initialize({
+        watchPaths: [basePath],
+        watchExtensions: ['.png', '.jpg', '.jpeg'],
+        recursive: true
+      }).then(() => {
+        console.debug(`Added watch path: ${basePath}`);
+      }).catch((error: Error) => {
+        console.error(`Failed to add watch path ${basePath}:`, error);
+      });
+    }
+  }
+};
+
+
+

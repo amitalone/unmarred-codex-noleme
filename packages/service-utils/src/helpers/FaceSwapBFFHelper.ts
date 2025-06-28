@@ -1,6 +1,7 @@
 import { FaceImage, ModelImage, OutputImage, ScannedFile } from "@repo/shared-interfaces";
 import { FileSystemUtil } from "../utils/";
 import { TransformerUtil } from "../utils/";
+import { addWatchPath } from "../utils/FileSystemUtil";
 
 const LOCAL_LOCAL_FS_PATH = "C:/workspace/face-swap-fs/";
 const LOCAL_UPLOAD_IMAGE_FOLDER_BASE = LOCAL_LOCAL_FS_PATH;
@@ -8,6 +9,9 @@ const DAM_URL = "http://192.168.50.38:8000";
 const RELATIVE_FACES_PATH = "/faces/";
 const RELATIVE_MODEL_PATH = "/model/";
 const  RELATIVE_OUTPUT_PATH =  "output/";
+
+// Initialize watch paths for caching
+addWatchPath(LOCAL_LOCAL_FS_PATH);
 
 
 const toResultImages = (files:ScannedFile[]):OutputImage[] => {
@@ -27,11 +31,11 @@ const toResultImages = (files:ScannedFile[]):OutputImage[] => {
     });
 }
 
-const checkFaceModelCombination= (
+const checkFaceModelCombination= async (
   faceName: string,
   modelName: string,
   list: ScannedFile[]
-): OutputImage | null => {
+): Promise<OutputImage | null> => {
   if (!Array.isArray(list)) {
     console.error("Expected list to be an array, but got:", list);
     return null;
@@ -55,7 +59,7 @@ const getFaceModelByResultName = (filename:string): { face: FaceImage, model: Mo
      modelName = parts[1] || null; 
    }
    const face:FaceImage = {src: DAM_URL + RELATIVE_FACES_PATH + faceName, alt: "Face Image", name: faceName || '', type: 'Face'};
-   const model = {src: DAM_URL + RELATIVE_MODEL_PATH + modelName, alt: "Model Image", name: modelName || '', type: 'Model'};
+   const model:ModelImage = {src: DAM_URL + RELATIVE_MODEL_PATH + modelName, alt: "Model Image", name: modelName || '', type: 'Model'};
    return { 'face': face, 'model': model };
 }
 
@@ -116,8 +120,8 @@ const getModelsImages = (allFiles:ScannedFile[], pageNumber:number, pageSize:num
     return results;
 }
 
-export const getResultByFacetValue = (basePath:string, path:string, pageNumber:number, pageSize:number) =>{
-    const allFiles:ScannedFile[] = FileSystemUtil.scanFolderRecursive(basePath, path);
+export const getResultByFacetValue = async (basePath:string, path:string, pageNumber:number, pageSize:number) =>{
+    const allFiles:ScannedFile[] = await FileSystemUtil.scanFolderRecursive(basePath, path) as ScannedFile[];
     return getResultImages(allFiles, pageNumber, pageSize);
 }
 
@@ -125,22 +129,24 @@ export const getResultFacets = (path:string) => {
     return  TransformerUtil.transformToTreeViewFormat(FileSystemUtil.getFolderStructure(path));
 }
 
-export const getFaces = (basePath:string,  pageNumber:number, pageSize:number) =>{
-    const allFiles:ScannedFile[] = FileSystemUtil.scanFolderRecursive(basePath, RELATIVE_FACES_PATH);
+export const getFaces = async (basePath:string,  pageNumber:number, pageSize:number) =>{
+    const allFiles:ScannedFile[] = await FileSystemUtil.scanFolderRecursive(basePath, RELATIVE_FACES_PATH) as ScannedFile[];
     return getFacesImages(allFiles, pageNumber, pageSize);
 }
-export const getModels = (basePath:string,  pageNumber:number, pageSize:number) =>{
-    const allFiles:ScannedFile[] = FileSystemUtil.scanFolderRecursive(basePath, RELATIVE_MODEL_PATH);
+export const getModels = async (basePath:string,  pageNumber:number, pageSize:number) =>{
+    const allFiles:ScannedFile[] = await FileSystemUtil.scanFolderRecursive(basePath, RELATIVE_MODEL_PATH) as ScannedFile[];
     return getModelsImages(allFiles, pageNumber, pageSize);
 }
 
-export const checkExistingFaceModelCombination = (
+export const checkExistingFaceModelCombination = async (
   faces: string[],
-    models: string[]): OutputImage[] => {
+    models: string[]): Promise<OutputImage[]> => {
         const results: OutputImage[] = [];
+        const outputFiles = await FileSystemUtil.scanFolderRecursive(LOCAL_LOCAL_FS_PATH, RELATIVE_OUTPUT_PATH) as ScannedFile[];
+        
         for (const face of faces) {
             for (const model of models) {
-                const result = checkFaceModelCombination(face, model, FileSystemUtil.scanFolderRecursive(LOCAL_LOCAL_FS_PATH, RELATIVE_OUTPUT_PATH));
+                const result = await checkFaceModelCombination(face, model, outputFiles);
                 if (result !== null) {
                     results.push(result);
                 }

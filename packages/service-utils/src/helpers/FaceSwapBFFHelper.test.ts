@@ -1,4 +1,4 @@
-import { getResultFacetsByPath, getResultFacets, getFaces, getModels } from '../helpers/FaceSwapBFFHelper';
+import { getResultByFacetValue, getResultFacets, getFaces, getModels } from '../helpers/FaceSwapBFFHelper';
 import * as FileSystemUtil from '../utils/FileSystemUtil';
 import * as TransformerUtil from '../utils/TransformerUtil';
 import { FaceImage, ModelImage, OutputImage, ScannedFile } from '@repo/shared-interfaces';
@@ -26,8 +26,8 @@ describe('FaceSwapBFFHelper', () => {
     jest.clearAllMocks();
   });
 
-  describe('getResultFacetsByPath', () => {
-    it('should call scanFolderRecursive and return result images', () => {
+  describe('getResultByFacetValue', () => {
+    it('should call scanFolderRecursive and return result images', async () => {
       // Arrange
       const basePath = '/base/path';
       const path = 'results/path';
@@ -61,13 +61,13 @@ describe('FaceSwapBFFHelper', () => {
       }];
 
       // Setup mocks
-      (FileSystemUtil.scanFolderRecursive as jest.Mock).mockReturnValue(mockFiles);
+      (FileSystemUtil.scanFolderRecursive as jest.Mock).mockResolvedValue(mockFiles);
       (FileSystemUtil.sortFilesByDate as jest.Mock).mockReturnValue(mockFiles);
       (TransformerUtil.getPaginatedFiles as jest.Mock).mockReturnValue(mockFiles);
       (TransformerUtil.formatDateToCustomFormat as jest.Mock).mockReturnValue('formatted-date');
 
       // Act
-      const result = getResultFacetsByPath(basePath, path, pageNumber, pageSize);
+      const result = await getResultByFacetValue(basePath, path, pageNumber, pageSize);
 
       // Assert
       expect(FileSystemUtil.scanFolderRecursive).toHaveBeenCalledWith(basePath, path);
@@ -76,7 +76,7 @@ describe('FaceSwapBFFHelper', () => {
       expect(result).toEqual(expectedResult);
     });
 
-    it('should return empty array when no files are found', () => {
+    it('should return empty array when no files are found', async () => {
       // Arrange
       const basePath = '/base/path';
       const path = 'results/path';
@@ -85,12 +85,12 @@ describe('FaceSwapBFFHelper', () => {
       const mockFiles: ScannedFile[] = [];
 
       // Setup mocks
-      (FileSystemUtil.scanFolderRecursive as jest.Mock).mockReturnValue(mockFiles);
+      (FileSystemUtil.scanFolderRecursive as jest.Mock).mockResolvedValue(mockFiles);
       (FileSystemUtil.sortFilesByDate as jest.Mock).mockReturnValue(mockFiles);
       (TransformerUtil.getPaginatedFiles as jest.Mock).mockReturnValue(mockFiles);
 
       // Act
-      const result = getResultFacetsByPath(basePath, path, pageNumber, pageSize);
+      const result = await getResultByFacetValue(basePath, path, pageNumber, pageSize);
 
       // Assert
       expect(result).toEqual([]);
@@ -118,7 +118,7 @@ describe('FaceSwapBFFHelper', () => {
   });
 
   describe('getFaces', () => {
-    it('should call scanFolderRecursive with the correct path and return face images', () => {
+    it('should call scanFolderRecursive with the correct path and return face images', async () => {
       // Arrange
       const basePath = '/base/path';
       const pageNumber = 1;
@@ -138,32 +138,32 @@ describe('FaceSwapBFFHelper', () => {
         }
       ];
 
-      (FileSystemUtil.scanFolderRecursive as jest.Mock).mockReturnValue(mockFiles);
+      (FileSystemUtil.scanFolderRecursive as jest.Mock).mockResolvedValue(mockFiles);
       (FileSystemUtil.sortFilesByDate as jest.Mock).mockReturnValue(mockFiles);
       (TransformerUtil.getPaginatedFiles as jest.Mock).mockReturnValue(mockFiles);
       (TransformerUtil.formatDateToCustomFormat as jest.Mock).mockReturnValue('formatted-date');
 
       // Act
-      const result = getFaces(basePath, pageNumber, pageSize);
+      const result = await getFaces(basePath, pageNumber, pageSize);
 
       // Assert
       expect(FileSystemUtil.scanFolderRecursive).toHaveBeenCalledWith(basePath, RELATIVE_FACES_PATH);
       expect(result).toEqual(expectedResults);
     });
 
-    it('should return empty array when no files are found', () => {
+    it('should return empty array when no files are found', async () => {
       // Arrange
       const basePath = '/base/path';
       const pageNumber = 1;
       const pageSize = 10;
       const mockFiles: ScannedFile[] = [];
 
-      (FileSystemUtil.scanFolderRecursive as jest.Mock).mockReturnValue(mockFiles);
+      (FileSystemUtil.scanFolderRecursive as jest.Mock).mockResolvedValue(mockFiles);
       (FileSystemUtil.sortFilesByDate as jest.Mock).mockReturnValue(mockFiles);
       (TransformerUtil.getPaginatedFiles as jest.Mock).mockReturnValue(mockFiles);
 
       // Act
-      const result = getFaces(basePath, pageNumber, pageSize);
+      const result = await getFaces(basePath, pageNumber, pageSize);
 
       // Assert
       expect(result).toEqual([]);
@@ -171,7 +171,7 @@ describe('FaceSwapBFFHelper', () => {
   });
 
   describe('getModels', () => {
-    it('should call scanFolderRecursive with the correct path and return model images', () => {
+    it('should call scanFolderRecursive with the correct path and return model images', async () => {
       // Arrange
       const basePath = '/base/path';
       const pageNumber = 1;
@@ -191,32 +191,32 @@ describe('FaceSwapBFFHelper', () => {
         }
       ];
 
-      (FileSystemUtil.scanFolderRecursive as jest.Mock).mockReturnValue(mockFiles);
+      (FileSystemUtil.scanFolderRecursive as jest.Mock).mockResolvedValue(mockFiles);
       (FileSystemUtil.sortFilesByDate as jest.Mock).mockReturnValue(mockFiles);
       (TransformerUtil.getPaginatedFiles as jest.Mock).mockReturnValue(mockFiles);
       (TransformerUtil.formatDateToCustomFormat as jest.Mock).mockReturnValue('formatted-date');
 
       // Act
-      const result = getModels(basePath, pageNumber, pageSize);
+      const result = await getModels(basePath, pageNumber, pageSize);
 
       // Assert
       expect(FileSystemUtil.scanFolderRecursive).toHaveBeenCalledWith(basePath, RELATIVE_MODEL_PATH);
       expect(result).toEqual(expectedResults);
     });
 
-    it('should return empty array when no files are found', () => {
+    it('should return empty array when no files are found', async () => {
       // Arrange
       const basePath = '/base/path';
       const pageNumber = 1;
       const pageSize = 10;
       const mockFiles: ScannedFile[] = [];
 
-      (FileSystemUtil.scanFolderRecursive as jest.Mock).mockReturnValue(mockFiles);
+      (FileSystemUtil.scanFolderRecursive as jest.Mock).mockResolvedValue(mockFiles);
       (FileSystemUtil.sortFilesByDate as jest.Mock).mockReturnValue(mockFiles);
       (TransformerUtil.getPaginatedFiles as jest.Mock).mockReturnValue(mockFiles);
 
       // Act
-      const result = getModels(basePath, pageNumber, pageSize);
+      const result = await getModels(basePath, pageNumber, pageSize);
 
       // Assert
       expect(result).toEqual([]);
