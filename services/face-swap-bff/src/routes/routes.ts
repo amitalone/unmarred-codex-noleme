@@ -1,5 +1,5 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
-import {FACE_SWAP_BFF_ROUTES} from "@repo/shared-interfaces";
+import {DraftImageImportBody, FACE_SWAP_BFF_ROUTES} from "@repo/shared-interfaces";
 import FaceSwapBFFHelper from "@repo/service-utils/helpers/FaceSwapBFFHelper";
 const LOCAL_IMAGE_FOLDER_BASE = "C:/workspace/face-swap-fs";
 
@@ -87,8 +87,75 @@ export async function routes(fastify: FastifyInstance, options: object): Promise
       }
     return FaceSwapBFFHelper.checkExistingFaceModelCombination(faces, models);
   });
-  
+
+  fastify.post(FACE_SWAP_BFF_ROUTES.uploadToDraft, async (
+    request: FastifyRequest<{ Body: any }>,
+    reply: FastifyReply
+  ) => {
+    fastify.log.info(`post /uploadToDraft endpoint was hit`);
+    
+    // Debug: Log keys to avoid circular reference
+    const body = request.body as any;
+    fastify.log.info("Request body keys:", Object.keys(body));
+    
+    // Extract importType from the structure: importType[0][value]
+    let importType = '';
+    
+    if (body['importType[0][value]']) {
+      const importTypeField = body['importType[0][value]'];
+      importType = typeof importTypeField === 'string' ? importTypeField : 
+                   (importTypeField.value || importTypeField);
+    }
+    
+    fastify.log.info("Extracted importType:", importType);
+    const files = body.files || [];
+    
+    if (!importType) {
+      reply.code(400);
+      return { error: "Import type is required." };
+    }
+    
+    if (!files || files.length === 0) {
+      reply.code(400);
+      return { error: "At least one file is required." };
+    }
+    
+    try {
+      const uploadedFiles = await FaceSwapBFFHelper.addDraftFiles(files, importType);
+      return {
+        success: true,
+        message: `Successfully uploaded ${uploadedFiles.length} files as ${importType}`,
+        importType: importType,
+        files: uploadedFiles,
+      };
+    } catch (error) {
+      fastify.log.error("Error processing uploaded files:", error);
+      reply.code(500);
+      return { error: "Internal server error while processing files." };
+    }
+  });
+
+   fastify.post(FACE_SWAP_BFF_ROUTES.acceptDraftImages, async (
+    request: FastifyRequest<{ Body: any }>,
+    reply: FastifyReply
+  ) => {
+    fastify.log.info(`post /accept-darft endpoint was hit`);
+     const body = request.body as any;
+    fastify.log.info("Request body keys:", Object.keys(body));
+    return {'hey': 'there'};
+  } );
+
+   fastify.get(FACE_SWAP_BFF_ROUTES.draftImages, async (
+    request: FastifyRequest,
+    reply: FastifyReply
+  ) => {
+    const { pageNumber } = request.params || 1;
+    //const folderPath = path.replaceAll("-", "/");
+    return FaceSwapBFFHelper.getDraftImages(LOCAL_IMAGE_FOLDER_BASE, pageNumber, pageSize); 
+  });
 }
+
+
  
  
 export default routes;

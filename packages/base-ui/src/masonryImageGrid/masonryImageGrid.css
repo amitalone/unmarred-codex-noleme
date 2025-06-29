@@ -23,6 +23,14 @@
   @apply transform scale-105;
 }
 
+/* Circular styling for face images */
+.masonry-image-grid__image--circular {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 3px solid #3b82f6;
+}
+
 .masonry-image-grid__action-bar {
   @apply p-0 absolute right-0 bottom-2 left-0 z-30  opacity-0 backdrop-blur-sm transition-opacity duration-300 hover:opacity-100;
 }

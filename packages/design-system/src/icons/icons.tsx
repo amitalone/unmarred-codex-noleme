@@ -11,6 +11,7 @@ import { RiSwap2Line } from "react-icons/ri";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { HiChevronLeft, HiChevronRight, HiPlay, HiPause } from "react-icons/hi";
 import { FcUpload } from "react-icons/fc";
+import { MdOutlineAddReaction } from "react-icons/md";
 
 export const IconChevronLeft = HiChevronLeft;
 export const IconChevronRight = HiChevronRight;
@@ -29,3 +30,4 @@ export const IconFileImport = FaFileImport;
 export const IconImages = IoIosImages;
 export const IconImageSearch = MdOutlineImageSearch;
 export const IconUpload = FcUpload;
+export const IconFaceModelImport = MdOutlineAddReaction;

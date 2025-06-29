@@ -1,0 +1,134 @@
+/* ImportFaceModelPage component styles using BEM format */
+.import-face-model-page {
+  @apply w-full h-full flex flex-col p-4;
+}
+
+.import-face-model-page__two-column-layout {
+  @apply flex flex-row gap-6 h-full;
+}
+
+.import-face-model-page__upload-column {
+  @apply flex-shrink-0 w-80;
+}
+
+.import-face-model-page__images-column {
+  @apply flex-1 min-w-0;
+}
+
+.import-face-model-page__additional-content {
+  @apply mt-6 w-full;
+}
+
+/* FileUploadSection component styles */
+.file-upload-section {
+  @apply w-full h-full flex flex-col;
+}
+
+.file-upload-section__content {
+  @apply flex flex-col justify-start max-w-full w-full;
+}
+
+.file-upload-section__form {
+  @apply bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-full;
+}
+
+.file-upload-section__heading {
+  @apply text-xl font-bold text-gray-900 dark:text-white mb-4 text-center;
+}
+
+.file-upload-section__radio-group {
+  @apply mb-6;
+}
+
+.file-upload-section__drop-zone {
+  @apply mb-6;
+}
+
+.file-upload-section__file-input {
+  @apply w-full;
+}
+
+.file-upload-section__actions {
+  @apply flex justify-center;
+}
+
+.file-upload-section__button-group {
+  @apply flex gap-4 items-center;
+}
+
+.file-upload-section__button-group > * {
+  @apply min-w-[100px];
+}
+
+.file-upload-section__file-list {
+  @apply mt-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border;
+}
+
+.file-upload-section__file-list h4 {
+  @apply text-sm font-medium text-gray-700 dark:text-gray-300 mb-2;
+}
+
+.file-upload-section__file-list ul {
+  @apply space-y-1;
+}
+
+.file-upload-section__file-item {
+  @apply text-xs text-gray-600 dark:text-gray-400 p-2 bg-white dark:bg-gray-600 rounded border truncate;
+}
+
+/* Action button specific styles */
+.import-face-model-page__accept-button {
+  @apply bg-green-500 hover:bg-green-600 text-white;
+}
+
+.import-face-model-page__upload-button {
+  @apply bg-blue-500 hover:bg-blue-600 text-white;
+}
+
+.import-face-model-page__accept-button--disabled,
+.import-face-model-page__upload-button--disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* ImageDisplaySection component styles */
+.image-display-section {
+  @apply w-full h-full flex flex-col;
+}
+
+.image-display-section__header {
+  @apply mb-4;
+}
+
+.image-display-section__title {
+  @apply text-lg font-semibold text-gray-900 dark:text-white;
+}
+
+.image-display-section__grid {
+  @apply flex-1 overflow-auto;
+}
+
+.image-display-section__masonry-grid {
+  @apply w-full;
+}
+
+/* RadioButton component styles */
+.radio-button {
+  @apply flex items-center mb-4;
+}
+
+.radio-button__input {
+  @apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600;
+}
+
+.radio-button__label {
+  @apply ml-3 text-lg font-medium text-gray-900 dark:text-gray-300 cursor-pointer select-none;
+}
+
+.radio-button__label:hover {
+  @apply text-blue-600 dark:text-blue-400;
+}
+
+/* RadioButtonGroup component styles */
+.radio-button-group {
+  @apply space-y-2;
+}

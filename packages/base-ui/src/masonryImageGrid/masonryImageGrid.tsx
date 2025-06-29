@@ -17,6 +17,7 @@ import {
 } from "@repo/design-system/icons";
 import { Children } from "react";
 import { FullscreenImageViewer } from "../fullScreenImageViewer";
+import { isFaceImage } from "../utils/imageUtils";
 
 export function MasonryImageGrid({
   images,
@@ -224,7 +225,11 @@ export function MasonryImageGrid({
               <img
                 src={image.src}
                 alt={image.alt || `Image ${index + 1}`}
-                className="masonry-image-grid__image"
+                className={`masonry-image-grid__image ${
+                  isFaceImage(image)
+                    ? "masonry-image-grid__image--circular"
+                    : ""
+                }`}
                 loading="lazy"
                 onClick={() => onImageClick && onImageClick(index)}
                 style={{ cursor: "pointer" }}

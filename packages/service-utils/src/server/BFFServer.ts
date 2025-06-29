@@ -30,11 +30,12 @@ const initializeServer = async (origin: string, prefix:string, routes: () => Pro
   origin: origin,
   methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
 });
- fastify.register(routes, { prefix: prefix }); 
-  fastify.register(import("@fastify/multipart"), {
+fastify.register(import("@fastify/multipart"), {
     attachFieldsToBody: true,
     limits: { fileSize: 10 * 1024 * 1024 },
   });
+ fastify.register(routes, { prefix: prefix }); 
+  
 }
 
 export const start = async ({name, prefix= "/api/", origin='*', routes, port, host='0.0.0.0'}: BFFServerProps) => {

@@ -22,23 +22,25 @@ export const ApiClient = {
     },
 
     async post<T>(url: string, body?: any): Promise<T> {
+        const isFormData = body instanceof FormData;
         const response = await fetch(url, {
             method: 'POST',
-            headers: {
+            headers: isFormData ? {} : {
                 'Content-Type': 'application/json',
             },
-            body: body ? JSON.stringify(body) : undefined,
+            body: isFormData ? body : (body ? JSON.stringify(body) : undefined),
         });
         return this.handleResponse(response);
     },
 
     async put<T>(url: string, body?: any): Promise<T> {
+        const isFormData = body instanceof FormData;
         const response = await fetch(url, {
             method: 'PUT',
-            headers: {
+            headers: isFormData ? {} : {
                 'Content-Type': 'application/json',
             },
-            body: body ? JSON.stringify(body) : undefined,
+            body: isFormData ? body : (body ? JSON.stringify(body) : undefined),
         });
         return this.handleResponse(response);
     },

@@ -5,7 +5,7 @@ export interface FileMetadata {
   width?: number;
   height?: number;
   owner: string;
-  computer: string;
+  ownerSocial?: string[];
   createdFmt: string;
 }
 

@@ -5,8 +5,10 @@
 () Import images
 () Cache with invalidation watch
 () Read Images
+() Attach SideCars
 () Comfy Proxy
 () Submit images skip existing
 () Show model on long press
 () Show bigger face models on image popover along with action buttons
 () Facets with close button
+() When Accepting file from draft push sidecar to faces and models

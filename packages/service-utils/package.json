@@ -22,9 +22,9 @@
     "mutation:report": "open reports/mutation/html/index.html"
   },
   "devDependencies": {
-    "@repo/shared-interfaces": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/jest-config": "workspace:*",
+    "@repo/shared-interfaces": "workspace:*",
     "@repo/stryker-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
@@ -42,6 +42,7 @@
   "dependencies": {
     "@fastify/cors": "^11.0.1",
     "@fastify/multipart": "^9.0.3",
-    "fastify": "5.3.3"
+    "fastify": "5.3.3",
+    "sharp": "0.34.1"
   }
 }

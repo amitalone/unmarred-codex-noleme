@@ -1,18 +1,30 @@
-import { FaceImage, ModelImage, OutputImage, ScannedFile } from "@repo/shared-interfaces";
+import { DraftImage, FaceImage, ModelImage, OutputImage, ScannedFile } from "@repo/shared-interfaces";
 import { FileSystemUtil } from "../utils/";
 import { TransformerUtil } from "../utils/";
 import { addWatchPath } from "../utils/FileSystemUtil";
+import * as fs from "fs";
+import * as path from "path";
+import * as os from "os";
+import { ImageSidecar } from "../utils/interfaces";
 
 const LOCAL_LOCAL_FS_PATH = "C:/workspace/face-swap-fs/";
 const LOCAL_UPLOAD_IMAGE_FOLDER_BASE = LOCAL_LOCAL_FS_PATH;
 const DAM_URL = "http://192.168.50.38:8000";
 const RELATIVE_FACES_PATH = "/faces/";
 const RELATIVE_MODEL_PATH = "/model/";
-const  RELATIVE_OUTPUT_PATH =  "output/";
+const RELATIVE_OUTPUT_PATH =  "output/";
+const RELATIVE_IMPORT_PATH = "/imported-files/";
 
 // Initialize watch paths for caching
 addWatchPath(LOCAL_LOCAL_FS_PATH);
 
+export interface UploadedFile {
+  filename: string;
+  encoding?: string;
+  mimetype?: string;
+  fieldname?: string;
+  toBuffer: () => Promise<Buffer>;
+}
 
 const toResultImages = (files:ScannedFile[]):OutputImage[] => {
 
@@ -153,4 +165,71 @@ export const checkExistingFaceModelCombination = async (
             }
         }
         return results;
+  }
+
+ 
+
+
+export const addDraftFiles = async (files: UploadedFile[], importType: string): Promise<string[]> => {
+  const uploadedFiles: string[] = [];
+  for (const file of files) {
+    const currentDate = new Date().toISOString().split("T")[0];
+    const filePath = path.join(
+      LOCAL_LOCAL_FS_PATH+ RELATIVE_IMPORT_PATH,
+      currentDate || '',
+      file.filename
+    );
+    
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    const buffer = await file.toBuffer();
+    console.log("Writing file to path:", filePath);
+    await fs.promises.writeFile(filePath, buffer);
+
+    // Use the new generic function
+    await FileSystemUtil.generateImageSidecar(filePath, importType, "draft");
+    
+    uploadedFiles.push(file.filename);
+    console.log("Received file:", {
+      filename: file.filename,
+      encoding: file.encoding,
+      mimetype: file.mimetype,
+      fieldname: file.fieldname,
+      importType: importType,
+    });
+  }
+  return uploadedFiles;
+};
+
+export const getDraftImages = async (basePath: string, pageNumber: number, pageSize: number): Promise<DraftImage[]> => {
+    const allFiles: ScannedFile[] = await FileSystemUtil.scanFolderRecursive(basePath, RELATIVE_IMPORT_PATH) as ScannedFile[];
+    const sortedFiles = FileSystemUtil.sortFilesByDate(allFiles);
+    const paginatedFiles = TransformerUtil.getPaginatedFiles(sortedFiles, pageNumber, pageSize);
+    const draftImages: DraftImage[] = [];
+    
+    for (const file of paginatedFiles) {
+        // Get the full file path for sidecar lookup
+        const fullFilePath = basePath+file.path;
+        const sidecar = await FileSystemUtil.getImageSidecar(fullFilePath);
+        
+        // Determine the image type from sidecar, defaulting to 'Face' if no sidecar or invalid type
+        const imageType = (sidecar?.type === 'model' || sidecar?.type === 'Model' ) ? 'Model' : 'Face';
+        
+        const draftImage: DraftImage = {
+            src: DAM_URL + file.path,
+            alt: "Draft Image",
+            created: file.created.toISOString(),
+            createdfmt: TransformerUtil.formatDateToCustomFormat(file.created),
+            name: file.name,
+            status: 'Draft',
+            type: 'Draft',
+            image: { 
+                src: DAM_URL + file.path, 
+                alt: `${imageType} Image`, 
+                name: file.name, 
+                type: imageType 
+            }
+        };
+        draftImages.push(draftImage);
     }
+    return draftImages;
+}

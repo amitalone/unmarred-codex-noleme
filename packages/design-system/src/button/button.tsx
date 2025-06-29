@@ -5,6 +5,7 @@ export interface ButtonProps {
   children?: React.ReactNode;
   pill?: boolean;
   className?: string;
+  disabled?: boolean;
 }
 
 export function Button({
@@ -13,6 +14,7 @@ export function Button({
   children,
   pill,
   className,
+  disabled,
 }: ButtonProps) {
   return (
     <FlowButton
@@ -21,6 +23,7 @@ export function Button({
       onClick={onClick}
       className={`${className}`}
       pill={pill}
+      disabled={disabled}
     >
       {children || text}
     </FlowButton>

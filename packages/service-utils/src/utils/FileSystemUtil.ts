@@ -1,11 +1,11 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as os from "os";
-//import sharp from "sharp";
+import sharp from "sharp";
 
 import { ScannedFile } from "@repo/shared-interfaces";
 import { createFileSystemCacheManager } from "../cache";
- 
+import { formatDateToCustomFormat } from "../utils/TransformerUtil";
 import {
   FileMetadata,
   ImageSidecar,
@@ -18,12 +18,6 @@ import {
   UploadedFile
 } from "./interfaces";
 
-// const LOCAL_LOCAL_FS_PATH = "C:/workspace/face-swap-fs/";
-// const LOCAL_UPLOAD_IMAGE_FOLDER_BASE = LOCAL_LOCAL_FS_PATH;
-// const DAM_URL = "http://192.168.50.38:8000/";
-// const RELATIVE_FACES_PATH = "faces/";
-// const RELATIVE_MODEL_PATH = "model/";
-// const IMPORT_FILE_PATH = "imported-files/";
 
 const SFW_MODE = false;
 
@@ -169,4 +163,75 @@ export const addWatchPath = (basePath: string): void => {
 };
 
 
+export const getFileMetadata = async (filePath: string): Promise<FileMetadata> => {
+  try {
+    const metadata = fs.statSync(filePath);
+    const imageInfo = await sharp(filePath).metadata();
+    return {
+      size: metadata.size,
+      created: metadata.birthtime,
+      modified: metadata.mtime,
+      width: imageInfo.width,
+      height: imageInfo.height,
+      owner: process.env.USERNAME || os.userInfo().username,
+      createdFmt: formatDateToCustomFormat(metadata.birthtime),
+    };
+  } catch (error) {
+    console.error("Error reading file metadata:", error);
+    return {
+      size: 0,
+      created: new Date(),
+      modified: new Date(),
+      owner: process.env.USERNAME || os.userInfo().username,
+      createdFmt: formatDateToCustomFormat(new Date()),
+    };
+  }
+};
 
+export const generateImageSidecar = async (
+  filePath: string, 
+  importType: string, 
+  status: string = "draft"
+): Promise<string> => {
+  const fileMetadata = await getFileMetadata(filePath);
+  const filename = path.basename(filePath);
+  
+  const imageSidecar: ImageSidecar = {
+    filename: filename,
+    type: importType,
+    metadata: fileMetadata,
+    status: status,
+    importType: importType,
+  };
+  
+  const imageSidecarPath = filePath + ".json";
+  await fs.promises.writeFile(
+    imageSidecarPath,
+    JSON.stringify(imageSidecar, null, 2)
+  );
+  
+  return imageSidecarPath;
+};
+
+export const getImageSidecar = async (imageFilePath: string): Promise<ImageSidecar | null> => {
+   
+  const jsonFilePath =`${imageFilePath}.json`
+
+  try {
+    // Check if the sidecar file exists
+    await fs.promises.access(jsonFilePath, fs.constants.F_OK);
+    
+    // Read and parse the JSON sidecar file
+    const jsonContentString = await fs.promises.readFile(jsonFilePath, "utf8");
+    const jsonData: ImageSidecar = JSON.parse(jsonContentString);
+    
+    return jsonData;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      // File doesn't exist
+      return null;
+    }
+    console.error(`Error reading or parsing JSON sidecar ${jsonFilePath}:`, error);
+    return null;
+  }
+};

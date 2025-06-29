@@ -7,6 +7,7 @@ import {
   IconImages,
   IconBodySwapping,
   IconFaceRetouchingNatural,
+  IconFaceModelImport,
 } from "@repo/design-system/icons";
 const geist = Geist({ subsets: ["latin"] });
 import { SelectedImagesProvider } from "@repo/face-swap-ui/selectedImagesContext";
@@ -30,6 +31,12 @@ const sideBarLinks = [
     icon: IconBodySwapping,
     label: "Models",
     linkComponent: <Link href="/models">Models</Link>,
+  },
+  {
+    href: "/import",
+    icon: IconFaceModelImport,
+    label: "Import",
+    linkComponent: <Link href="/import-files">Results</Link>,
   },
 ];
 

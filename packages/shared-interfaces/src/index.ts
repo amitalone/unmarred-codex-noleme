@@ -5,6 +5,9 @@ export const FACE_SWAP_BFF_ROUTES ={
   models: "/models/:pageNumber",
   validateCombination: "/validate-combination",
   submitImages: "/submit-images",
+  uploadToDraft: "/upload-to-draft",
+  acceptDraftImages: "/accept-draft",
+  draftImages: "/draft-images/:pageNumber",
 }
 
 export interface BaseImage {
@@ -15,8 +18,10 @@ export interface BaseImage {
   created?: string;
   createdfmt?: string;
   name: string;
+  status?: string;
 }
 
+type ImageType = 'Face' | 'Model' | 'Output' | 'Draft';
 export interface FaceImage extends BaseImage {
   type: 'Face';
 }
@@ -27,6 +32,11 @@ export interface OutputImage extends BaseImage {
   type: 'Output';
   face: FaceImage;
   model: ModelImage;
+}
+
+export interface DraftImage extends BaseImage {
+  type: 'Draft';
+  image:FaceImage | ModelImage;
 }
 
 export interface ScannedFile {
@@ -45,3 +55,9 @@ export interface TreeViewItem {
   label: string;
   children?: TreeViewItem[];
 }
+
+export interface DraftImageImportBody {
+  importType: Array<{ value: string }>;
+  files: any[];
+}
+
