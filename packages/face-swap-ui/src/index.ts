@@ -8,3 +8,4 @@ export * from "./selectedMageModelContainer";
 export * from "./selectedImagesContext";
 export * from "./combinationHighlighter";
 export * from "./utils/uploadUtils";
+export * from "./hooks/useDraftImageSelection";

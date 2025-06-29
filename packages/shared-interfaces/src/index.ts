@@ -19,6 +19,8 @@ export interface BaseImage {
   createdfmt?: string;
   name: string;
   status?: string;
+  isSelected?: boolean;
+    fsPath?: string;
 }
 
 type ImageType = 'Face' | 'Model' | 'Output' | 'Draft';
@@ -37,6 +39,7 @@ export interface OutputImage extends BaseImage {
 export interface DraftImage extends BaseImage {
   type: 'Draft';
   image:FaceImage | ModelImage;
+
 }
 
 export interface ScannedFile {
@@ -59,5 +62,15 @@ export interface TreeViewItem {
 export interface DraftImageImportBody {
   importType: Array<{ value: string }>;
   files: any[];
+}
+
+export interface AcceptDraftImagesRequest {
+  images: DraftImage[];
+}
+
+export interface AcceptDraftImagesResult {
+  acceptedImages: string[];
+  errors: string[];
+  totalProcessed: number;
 }
 

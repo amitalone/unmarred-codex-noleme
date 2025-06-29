@@ -12,6 +12,9 @@ export interface ImportFaceModelPageActionButtonsProps {
   importType: ImportType | null;
   selectedFiles?: File[];
   disabled?: boolean;
+  selectedDraftCount?: number;
+  getSelectedImageNames?: () => string[];
+  getSelectedDraftImages?: () => import("@repo/shared-interfaces").DraftImage[];
 }
 
 export function ImportFaceModelPageActionButtons({
@@ -19,6 +22,9 @@ export function ImportFaceModelPageActionButtons({
   importType,
   selectedFiles = [],
   disabled = false,
+  selectedDraftCount = 0,
+  getSelectedImageNames,
+  getSelectedDraftImages,
 }: ImportFaceModelPageActionButtonsProps) {
   const buttonHandler = createImportFaceModelPageHandler(actions);
 
@@ -34,6 +40,28 @@ export function ImportFaceModelPageActionButtons({
     }
   };
 
+  const handleAcceptDraftsClick = async () => {
+    console.log("handleAcceptDraftsClick called");
+    console.log("getSelectedDraftImages:", getSelectedDraftImages);
+    console.log("actions.acceptDraftImages:", actions.acceptDraftImages);
+
+    if (getSelectedDraftImages && actions.acceptDraftImages) {
+      const selectedDraftImages = getSelectedDraftImages();
+      console.log(
+        "Selected draft images from getSelectedDraftImages:",
+        selectedDraftImages
+      );
+      await actions.acceptDraftImages(selectedDraftImages);
+    } else {
+      console.log(
+        "Missing dependencies - getSelectedDraftImages:",
+        !!getSelectedDraftImages,
+        "actions.acceptDraftImages:",
+        !!actions.acceptDraftImages
+      );
+    }
+  };
+
   const AcceptButton = (
     <Button
       key="accept"
@@ -41,6 +69,21 @@ export function ImportFaceModelPageActionButtons({
       onClick={handleAcceptClick}
       className={`import-face-model-page__accept-button ${disabled ? "import-face-model-page__accept-button--disabled" : ""}`}
       data-testid="accept-button"
+    />
+  );
+
+  const AcceptDraftsButton = (
+    <Button
+      key="accept-drafts"
+      text={`Accept ${selectedDraftCount > 0 ? `(${selectedDraftCount})` : ""} Draft Images`}
+      onClick={handleAcceptDraftsClick}
+      disabled={selectedDraftCount === 0}
+      className={`import-face-model-page__accept-drafts-button ${
+        selectedDraftCount > 0
+          ? "import-face-model-page__accept-drafts-button--active"
+          : ""
+      }`}
+      data-testid="accept-drafts-button"
     />
   );
 
@@ -57,6 +100,7 @@ export function ImportFaceModelPageActionButtons({
 
   return {
     AcceptButton,
+    AcceptDraftsButton,
     UploadButton,
   };
 }

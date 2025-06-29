@@ -235,3 +235,22 @@ export const getImageSidecar = async (imageFilePath: string): Promise<ImageSidec
     return null;
   }
 };
+
+export const moveFiles = async (
+  files: FileToMove[],
+  destination: string
+): Promise<MoveResult[]> => {
+  const results: MoveResult[] = [];
+  for (const file of files) {
+    const sourcePath = file.path;
+    const destPath = path.join(destination, file.name);
+    try {
+      await fs.promises.rename(sourcePath, destPath);
+      results.push({ success: true, message: `Moved ${file.name} to ${destination}` });
+    } catch (error) {
+      console.error(`Error moving file ${file.name}:`, error);
+      results.push({ success: false, message: `Failed to move ${file.name}` });
+    }
+  }
+  return results;
+};

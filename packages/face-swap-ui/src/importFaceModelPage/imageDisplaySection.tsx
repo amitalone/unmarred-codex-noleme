@@ -4,9 +4,13 @@ import { BaseImage } from "@repo/shared-interfaces";
 
 export interface ImageDisplaySectionProps {
   images: BaseImage[];
+  onImageSelectionChange?: (index: number, isSelected: boolean) => void;
 }
 
-export function ImageDisplaySection({ images }: ImageDisplaySectionProps) {
+export function ImageDisplaySection({
+  images,
+  onImageSelectionChange,
+}: ImageDisplaySectionProps) {
   return (
     <div className="image-display-section">
       <div className="image-display-section__header">
@@ -22,6 +26,7 @@ export function ImageDisplaySection({ images }: ImageDisplaySectionProps) {
           columnGap={10}
           rowGap={10}
           className="image-display-section__masonry-grid"
+          onImageSelectionChange={onImageSelectionChange}
         />
       </div>
     </div>

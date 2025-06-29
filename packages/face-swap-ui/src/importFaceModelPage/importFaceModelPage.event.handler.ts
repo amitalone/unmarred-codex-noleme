@@ -13,6 +13,7 @@ export interface SelectedFileInfo {
 export type ImportFaceModelPageActions = {
   onAccept: (importType: ImportType) => void;
   onUpload: (selectedFiles: SelectedFileInfo[]) => Promise<void>;
+  acceptDraftImages?: (selectedDraftImages: import('@repo/shared-interfaces').DraftImage[]) => Promise<void>;
 };
 
 export const createImportFaceModelPageHandler = (actions: ImportFaceModelPageActions) => {

@@ -59,4 +59,11 @@ export interface MasonryImageGridProps {
    * @param index The index of the clicked image
    */
   onImageClick?: (index: number) => void;
+  
+  /**
+   * Callback function that is called when an image selection changes
+   * @param index The index of the image
+   * @param isSelected Whether the image is selected
+   */
+  onImageSelectionChange?: (index: number, isSelected: boolean) => void;
 }

@@ -30,6 +30,7 @@ export function MasonryImageGrid({
   onScrollEnd,
   isLoading = false,
   onImageClick,
+  onImageSelectionChange,
 }: MasonryImageGridProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
@@ -148,6 +149,14 @@ export function MasonryImageGrid({
     []
   );
 
+  // Handle checkbox change for draft images
+  const handleCheckboxChange = useCallback(
+    (index: number, isSelected: boolean) => {
+      onImageSelectionChange?.(index, isSelected);
+    },
+    [onImageSelectionChange]
+  );
+
   // Handle scroll events
   const handleScroll = useCallback(() => {
     if (!onScrollEnd || isLoading) return;
@@ -220,7 +229,13 @@ export function MasonryImageGrid({
             data-testid={`masonry-image-grid-item-${index}`}
           >
             {" "}
-            <div className="masonry-image-grid__image-wrapper has-image-action-bar">
+            <div
+              className={`masonry-image-grid__image-wrapper has-image-action-bar ${
+                image.isSelected
+                  ? "masonry-image-grid__image-wrapper--selected"
+                  : ""
+              }`}
+            >
               {" "}
               <img
                 src={image.src}
@@ -234,15 +249,27 @@ export function MasonryImageGrid({
                 onClick={() => onImageClick && onImageClick(index)}
                 style={{ cursor: "pointer" }}
               />
+              {/* Checkbox for draft images */}
+              {(image as any).type === "Draft" && (
+                <div className="masonry-image-grid__checkbox-container">
+                  <input
+                    type="checkbox"
+                    className="masonry-image-grid__checkbox"
+                    checked={image.isSelected ?? false}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      handleCheckboxChange(index, e.target.checked);
+                    }}
+                  />
+                </div>
+              )}
               {actionButtonList && actionButtonList.length > 0 ? (
                 <div className="masonry-image-grid__action-bar">
                   <ImageActionBar image={image}>
                     {" "}
                     {actionButtonList.map((button, btnIndex) => (
                       <Fragment key={`action-button-${btnIndex}`}>
-                        {React.cloneElement(button as React.ReactElement, {
-                          payload: image,
-                        })}
+                        {React.cloneElement(button as React.ReactElement)}
                       </Fragment>
                     ))}
                   </ImageActionBar>

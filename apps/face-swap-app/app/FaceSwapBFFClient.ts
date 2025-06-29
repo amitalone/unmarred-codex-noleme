@@ -46,3 +46,9 @@ export const uploadToDraft = async (formData: FormData) => {
     
     return await ApiClient.post(`${UI_BFF_BASE_URL}${FACE_SWAP_BFF_ROUTES.uploadToDraft}`, formData);
 }
+
+export const acceptDraftImages = async (draftImages: import('@repo/shared-interfaces').DraftImage[]) => {
+    console.log("Accepting draft images:", draftImages);
+    const payload = { images: draftImages };
+    return await ApiClient.post(`${UI_BFF_BASE_URL}${FACE_SWAP_BFF_ROUTES.acceptDraftImages}`, payload);
+}

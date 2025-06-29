@@ -6,6 +6,7 @@ import { RadioButtonGroup } from "./radioButtonGroup";
 import { FileUploadSection } from "./fileUploadSection";
 import { ImageDisplaySection } from "./imageDisplaySection";
 import { BaseImage } from "@repo/shared-interfaces";
+import { useDraftImageSelection } from "../hooks/useDraftImageSelection";
 import {
   type ImportType,
   type ImportFaceModelPageActions,
@@ -30,6 +31,15 @@ export function ImportFaceModelPage({
     useState<ImportType | null>(null);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
+  // Use the draft image selection hook
+  const {
+    imagesWithSelection,
+    handleImageSelectionChange,
+    getSelectedImageNames,
+    getSelectedDraftImages,
+    selectedCount,
+  } = useDraftImageSelection(images);
+
   const radioOptions = [
     { value: "face", label: "Face" },
     { value: "model", label: "Model" },
@@ -44,12 +54,17 @@ export function ImportFaceModelPage({
   };
 
   // Get the action buttons from our component
-  const { AcceptButton, UploadButton } = ImportFaceModelPageActionButtons({
-    actions,
-    importType: selectedImportType,
-    selectedFiles,
-    disabled: !selectedImportType,
-  });
+  const { AcceptDraftsButton, UploadButton } = ImportFaceModelPageActionButtons(
+    {
+      actions,
+      importType: selectedImportType,
+      selectedFiles,
+      disabled: !selectedImportType,
+      selectedDraftCount: selectedCount,
+      getSelectedImageNames,
+      getSelectedDraftImages,
+    }
+  );
 
   return (
     <FaceSwapAppPage title={title} className={className}>
@@ -63,7 +78,7 @@ export function ImportFaceModelPage({
                 selectedImportType={selectedImportType}
                 onImportTypeChange={handleRadioChange}
                 radioOptions={radioOptions}
-                acceptButton={AcceptButton}
+                acceptDraftsButton={AcceptDraftsButton}
                 uploadButton={UploadButton}
                 onFilesChange={handleFilesChange}
               />
@@ -71,7 +86,10 @@ export function ImportFaceModelPage({
 
             {/* Right Column - Image Grid Section */}
             <div className="import-face-model-page__images-column">
-              <ImageDisplaySection images={images} />
+              <ImageDisplaySection
+                images={imagesWithSelection}
+                onImageSelectionChange={handleImageSelectionChange}
+              />
             </div>
           </div>
 

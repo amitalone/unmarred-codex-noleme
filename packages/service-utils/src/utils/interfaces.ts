@@ -20,6 +20,7 @@ export interface ImageSidecar {
 export interface FileToMove {
   name: string;
   type: string;
+  path: string;
 }
 
 export interface MoveResult {

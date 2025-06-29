@@ -7,7 +7,7 @@ export interface FileUploadSectionProps {
   selectedImportType: ImportType | null;
   onImportTypeChange: (value: string) => void;
   radioOptions: Array<{ value: string; label: string }>;
-  acceptButton: ReactNode;
+  acceptDraftsButton?: ReactNode;
   uploadButton: ReactNode;
   onFilesChange?: (files: File[]) => void;
 }
@@ -16,7 +16,7 @@ export function FileUploadSection({
   selectedImportType,
   onImportTypeChange,
   radioOptions,
-  acceptButton,
+  acceptDraftsButton,
   uploadButton,
   onFilesChange,
 }: FileUploadSectionProps) {
@@ -74,9 +74,13 @@ export function FileUploadSection({
 
           <div className="file-upload-section__actions">
             <div className="file-upload-section__button-group">
-              {acceptButton}
               {uploadButton}
             </div>
+            {acceptDraftsButton && (
+              <div className="file-upload-section__draft-actions">
+                {acceptDraftsButton}
+              </div>
+            )}
           </div>
         </div>
       </div>

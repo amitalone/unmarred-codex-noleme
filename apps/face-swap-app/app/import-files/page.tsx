@@ -4,7 +4,11 @@ import {
   type SelectedFileInfo,
   createUploadFormData,
 } from "@repo/face-swap-ui/importFaceModelPage";
-import { getDraftImages, uploadToDraft } from "../FaceSwapBFFClient";
+import {
+  getDraftImages,
+  uploadToDraft,
+  acceptDraftImages,
+} from "../FaceSwapBFFClient";
 import { type ModelImage, type BaseImage } from "@repo/shared-interfaces";
 import { useInfiniteData, LoadMoreTrigger } from "@repo/base-ui";
 
@@ -58,6 +62,21 @@ export default function ModelsPage() {
       // TODO: Implement acceptDraft function later
     },
     onUpload: handleImageUpload,
+    acceptDraftImages: async (
+      selectedDraftImages: import("@repo/shared-interfaces").DraftImage[]
+    ) => {
+      try {
+        console.log("Accepting draft images:", selectedDraftImages);
+        const response = await acceptDraftImages(selectedDraftImages);
+        console.log("Accept draft images successful:", response);
+        // TODO: Show success message to user
+        // TODO: Refresh the images list
+        // TODO: Clear selected images
+      } catch (error) {
+        console.error("Error accepting draft images:", error);
+        // TODO: Show error message to user
+      }
+    },
   };
 
   return (

@@ -2,8 +2,11 @@
 () Selected images container, image object cover
 (X) CombinationScanner On Image add just show dot or smthing
 () CombinationScanner remove once change and give button to scan
-() Import images
-() Cache with invalidation watch
+(X) Import images
+(X) accept images
+( ) Add msg and data refresh on api cals
+() Round face images
+(X) Cache with invalidation watch
 () Read Images
 () Attach SideCars
 () Comfy Proxy

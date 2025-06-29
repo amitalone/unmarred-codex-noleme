@@ -222,14 +222,75 @@ export const getDraftImages = async (basePath: string, pageNumber: number, pageS
             name: file.name,
             status: 'Draft',
             type: 'Draft',
+           
             image: { 
                 src: DAM_URL + file.path, 
                 alt: `${imageType} Image`, 
                 name: file.name, 
-                type: imageType 
+                type: imageType,
+                 fsPath: file.path,
             }
         };
         draftImages.push(draftImage);
     }
     return draftImages;
 }
+
+export interface AcceptDraftImagesResult {
+  acceptedImages: string[];
+  errors: string[];
+  totalProcessed: number;
+}
+
+export const acceptDraftImages = async (draftImages: DraftImage[]): Promise<AcceptDraftImagesResult> => {
+  const acceptedImages: string[] = [];
+  const errors: string[] = [];
+  
+  for (const draftImage of draftImages) {
+    try {
+      // Determine the destination folder based on image type
+      const destinationFolder = draftImage.image.type === 'Face' 
+        ? RELATIVE_FACES_PATH.replace('/', '')  // Remove leading slash
+        : RELATIVE_MODEL_PATH.replace('/', '');  // Remove leading slash
+      
+      // Get the source file path (remove the DAM_URL prefix to get the actual file path)
+      const sourcePath = path.join(LOCAL_LOCAL_FS_PATH, draftImage.image.fsPath || '');
+      const destinationPath = path.join(LOCAL_LOCAL_FS_PATH, destinationFolder, draftImage.name);
+      
+      // Move the image file
+      await fs.promises.rename(sourcePath, destinationPath);
+      
+      // Move the JSON sidecar file if it exists
+      const sourceJsonPath = `${sourcePath}.json`;
+      const destinationJsonPath = `${destinationPath}.json`;
+      
+      if (fs.existsSync(sourceJsonPath)) {
+        await fs.promises.rename(sourceJsonPath, destinationJsonPath);
+        
+        // Update the sidecar file status to 'accepted'
+        try {
+          const sidecarContent = await fs.promises.readFile(destinationJsonPath, 'utf8');
+          const sidecar = JSON.parse(sidecarContent);
+          sidecar.status = 'accepted';
+          await fs.promises.writeFile(destinationJsonPath, JSON.stringify(sidecar, null, 2));
+        } catch (sidecarError) {
+          console.warn(`Failed to update sidecar status for ${draftImage.name}:`, sidecarError);
+        }
+      }
+      
+      acceptedImages.push(draftImage.name);
+      console.log(`Successfully moved ${draftImage.name} to ${destinationFolder} folder`);
+      
+    } catch (error) {
+      const errorMessage = `Failed to process ${draftImage.name}: ${(error as Error).message}`;
+      errors.push(errorMessage);
+      console.error(errorMessage);
+    }
+  }
+  
+  return {
+    acceptedImages,
+    errors,
+    totalProcessed: draftImages.length
+  };
+};
